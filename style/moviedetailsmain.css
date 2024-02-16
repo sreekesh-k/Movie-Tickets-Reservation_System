@@ -1,0 +1,51 @@
+.background-box {
+    margin: 40px 0px;
+    height: 75vh;
+    display: flex;
+    width: 100%;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.268), rgba(255, 255, 255, 1)), url('https://preview.redd.it/4fxxbm4opjd31.jpg?width=1080&crop=smart&auto=webp&s=b1e7078fa299f42b17591afdf120f823ba7a7d97');
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.movie-details {
+    height: 525px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 4px;
+}
+
+.movie-image {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: 100%;
+    max-width: 25%;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    padding: 2px;
+    gap: 2px;
+
+}
+
+.movie-desc {
+    display: flex;
+    flex-grow: 3;
+    height: 100%;
+    max-width: 80%;
+    padding: 2px;
+    gap: 2px;
+    flex-direction: column;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+}

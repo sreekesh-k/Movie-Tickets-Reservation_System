@@ -1,0 +1,178 @@
+@keyframes zoomOut {
+    1% {
+        transform: scale(1);
+    }
+
+    98% {
+        transform: scale(1.1);
+        /* Adjust the final scale factor as needed */
+    }
+
+    1% {
+        transform: scale(1);
+    }
+}
+
+.new-releases {
+    height: 80vh;
+    width: 100%;
+    margin-top: 5%;
+    box-sizing: border-box;
+}
+
+.new-releases h2 {
+    margin: 0px 170px;
+}
+
+.label-box {
+    font-family: Inter, sans-serif;
+    color: white;
+    width: 100%;
+    height: 70%;
+    overflow: hidden;
+    padding: 5px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    background-image: linear-gradient(to right, rgba(68, 248, 134, 0.379), rgba(68, 248, 134, 0.379)), url('https://preview.redd.it/4fxxbm4opjd31.jpg?width=1080&crop=smart&auto=webp&s=b1e7078fa299f42b17591afdf120f823ba7a7d97');
+    box-sizing: border-box;
+}
+
+.label-box img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.container {
+    margin: 10px;
+    width: 80%;
+    max-width: 1400px;
+    height: 100%;
+    display: flex;
+    gap: 5px;
+    border-radius: inherit;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.mcard {
+    min-width: 70px;
+    height: 100%;
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    cursor: pointer;
+    position: relative;
+    transition: 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    box-sizing: border-box;
+    --transition-timing: 0.25s;
+}
+
+.mcard.active {
+    flex-grow: 100;
+    box-shadow: 0px 4px 5px black;
+}
+
+.mcard.active img {
+
+    /* Maintains aspect ratio */
+    animation: zoomOut 5s ease-in-out;
+}
+
+.mcard>.background {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+    object-position: left;
+    filter: brightness(0.8);
+    z-index: -1;
+    transition: var(--transition-timing) ease;
+    box-sizing: border-box;
+}
+
+.mcard.active>.background {
+    filter: brightness(1) grayscale(0);
+}
+
+.mcard>.mcard-content {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 20px;
+    overflow: hidden;
+    transition: var(--transition-timing);
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+.mcard.active>.mcard-content {
+    inset: 20px;
+    top: auto;
+}
+
+.mcard-content * {
+    transition: var(--transition-timing);
+}
+
+.mcard-content>.profile-image {
+    min-width: 50px;
+    height: 50px;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    overflow: hidden;
+    opacity: 50%;
+    box-sizing: border-box;
+}
+
+.profile-image img {
+    height: 70%;
+    width: 70%;
+}
+
+.mcard.active .profile-image {
+    border: 1px solid rgb(110, 252, 205);
+    opacity: 50%;
+}
+
+.mcard-content>.title {
+    white-space: pre;
+    margin-left: 10px;
+    translate: 0 100%;
+    opacity: 0;
+    transition-delay: 0.3s;
+    text-decoration: none;
+    color: inherit;
+}
+
+.title {
+    font-weight: bold;
+    text-shadow: 2px 5px 5px black;
+}
+
+.mcard.active .title {
+    opacity: 1;
+    translate: 0 0;
+}
+
+.mcard>.backdrop {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100px;
+    z-index: 0;
+    background: linear-gradient(to bottom, transparent, rgb(0, 0, 0));
+}

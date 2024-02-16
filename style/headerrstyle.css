@@ -1,0 +1,362 @@
+body {
+    font-family: Roboto, sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+    /* background-color: black; */
+}
+
+header {
+    margin-top: 0px;
+    background-color: rgb(255, 255, 255);
+    height: 80px;
+    width: 100vw;
+    padding: 0px;
+    align-items: center;
+    position: relative;
+    box-sizing: border-box;
+    z-index: 100;
+
+}
+
+.navbar-box button:hover {
+    background-color: rgba(56, 233, 68, 0.238);
+    border-radius: 25px;
+}
+
+.navbar-box {
+    height: 100%;
+    width: 100vw;
+    background-color: rgba(255, 255, 255, 0);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    box-sizing: border-box;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.navbar {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.left-box,
+.center-box,
+.right-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0);
+    box-sizing: border-box;
+    margin: 0 5px;
+}
+
+.in-box {
+    width: 98%;
+    height: 50px;
+    display: flex;
+    background-color: rgba(255, 255, 255, 0);
+    margin: 0 5px;
+    box-sizing: border-box;
+    text-align: center;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0px 1px;
+}
+
+.in-box form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    box-sizing: border-box;
+    text-align: center;
+    align-items: center;
+}
+
+.logo-name {
+    height: 100%;
+    width: 100%;
+    border: none;
+    flex: 1;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.logo-name img {
+    height: 100%;
+}
+
+.searchbox {
+    display: flex;
+    width: 80%;
+    height: 80%;
+    background-color: rgba(255, 255, 255, 0);
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.searchbox input {
+    width: 100%;
+    outline: none;
+    height: 90%;
+    border: solid 1px rgba(0, 0, 0, 0.167);
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.searchbutton {
+    display: flex;
+    margin-left: 1px;
+    width: 19%;
+    height: 80%;
+    background-color: rgba(255, 255, 255, 0);
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.searchbutton button {
+    width: 70%;
+    height: 90%;
+    outline: none;
+    border: solid 1px rgba(0, 0, 0, 0.167);
+    box-sizing: border-box;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.searchbutton button img {
+    height: 50%;
+}
+
+.lastbox {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.signin-btn {
+    color: white;
+    background-color: rgb(68, 248, 134);
+    width: 15%;
+    height: 59%;
+    display: flex;
+    border: solid 1px rgb(68, 248, 134);
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.login-box-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(35, 36, 35, 0.379);
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    overflow: hidden;
+    transition: opacity 0.5s, visibility 0.5s;
+    /* Transition for fading in and out */
+    opacity: 0;
+    /* Initially invisible */
+    visibility: hidden;
+    /* Initially hidden */
+}
+
+.login-box-container.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #313151;
+}
+
+input {
+    font: 16px/26px "Raleway", sans-serif;
+}
+
+.form-wrap {
+    background-color: #fff;
+    width: 400px;
+    height: 400px;
+    margin: 3em auto;
+    border-radius: 7px;
+}
+
+.form-wrap .tabs {
+    overflow: hidden;
+}
+
+.form-wrap .tabs h3 {
+    float: left;
+    width: 50%;
+}
+
+.form-wrap .tabs h3 a {
+    padding: 0.5em 0;
+    text-align: center;
+    font-weight: 400;
+    background-color: #e6e7e8;
+    display: block;
+    color: #666;
+
+}
+
+.form-wrap .tabs h3 a.active {
+    background-color: #fff;
+}
+
+.form-wrap .tabs-content {
+    padding: 1.5em;
+}
+
+.form-wrap .tabs-content div[id$="tab-content"] {
+    display: none;
+}
+
+.form-wrap .tabs-content .active {
+    display: block !important;
+}
+
+.form-wrap form .input {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    color: inherit;
+    font-family: inherit;
+    padding: 0.8em 0 10px 0.8em;
+    border: 1px solid #cfcfcf;
+    outline: 0;
+    display: inline-block;
+    margin: 0 0 0.8em 0;
+    padding-right: 2em;
+    width: 100%;
+    border-radius: 7px;
+}
+
+.form-wrap form .button {
+    width: 100%;
+    padding: 0.8em 0 10px 0.8em;
+    background-color:rgb(51, 199, 105);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 7px;
+}
+
+.form-wrap form .button:hover {
+    background-color: rgb(47, 172, 93);
+}
+
+.menu-btn {
+    margin-left: 15px;
+    width: 10%;
+    height: 59%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    border: solid 1px rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    background-color: rgba(122, 122, 122, 0);
+    align-items: center;
+}
+
+.line {
+    margin: 3px 0px;
+    width: 30%;
+    height: 4px;
+    background-color: #1f1e1ed6;
+}
+
+.menubar {
+    background-color: rgb(255, 255, 255);
+    height: 50px;
+    width: 100vw;
+    padding: 0px;
+    align-items: center;
+    position: relative;
+}
+
+.menubar-box {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    box-sizing: border-box;
+    z-index: 1;
+    overflow: hidden;
+    background-color: rgba(69, 66, 66, 0.058);
+}
+
+.menubar-box button:hover {
+    border-bottom: solid 3px rgba(56, 233, 68, 0.238);
+    font-size: 1em;
+}
+
+.main1-box {
+    width: 98%;
+    height: 50px;
+    display: flex;
+    background-color: rgba(255, 255, 255, 0);
+    margin: 0 5px;
+    box-sizing: border-box;
+    text-align: center;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0px 1px;
+}
+
+.main2-box {
+    width: 98%;
+    height: 50px;
+    display: flex;
+    background-color: rgba(255, 255, 255, 0);
+    margin: 0 5px;
+    box-sizing: border-box;
+    text-align: center;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0px 1px;
+}
+
+.subbox {
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0);
+    width: 80%;
+    display: flex;
+    box-sizing: border-box;
+    text-align: center;
+    align-items: center;
+}
+
+.sub-btn {
+    flex: 1;
+    font-size: small;
+    cursor: pointer;
+    background-color: rgba(250, 235, 215, 0);
+    border: none;
+}
