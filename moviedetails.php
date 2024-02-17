@@ -11,6 +11,8 @@ include("headder.php");
     <link rel="stylesheet" href="style/moviedetailsmain.css">
     <link rel="stylesheet" href="style/moviedetailsLeftbox.css">
     <link rel="stylesheet" href="style/moviedetailsRight.css">
+    <link rel="stylesheet" href="style/indexMain.css">
+
 </head>
 
 <body>
@@ -30,6 +32,8 @@ include("headder.php");
                 $hours = floor($runtime_minutes / 60);
                 $minutes = $runtime_minutes % 60;
                 $date = strtotime($row["r_date"]);
+                $lang = $row["language"];
+                $genre = $row["genre"];
                 echo "
                 <div class='movie-image'>
                     <div class='image-container'>
@@ -68,10 +72,13 @@ include("headder.php");
                                 {$hours}h {$minutes}m
                                 </div>
                                 <div class='cata-box'>" .
-                                date("d-m-y", $date) .
-                                "</div>
+                    date("d-m-y", $date) .
+                    "</div>
                             </div> 
                             <hr>
+                            <h4>Director: </h4>
+                            <hr>
+                            <h4>Star: </h4>
                         </div>
                     </div>
                 </div>";
@@ -79,6 +86,66 @@ include("headder.php");
                 echo "movie id not provided";
             }
             ?>
+        </div>
+        <div class="heading-box">
+            <div style="flex: 1;">
+                <h2>Similar <?php echo $lang . " " . $genre; ?> Movies</h2>
+            </div>
+            <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href="" style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div>
+        </div>
+        <div class="mfilm-box">
+            <div class="film-box" id="new-releases">
+                <?php
+                $sql = "SELECT * FROM movies WHERE genre ='{$genre}' AND language ='{$lang}' ORDER BY RAND() LIMIT 5";
+                $result = mysqli_query($conn, "$sql");
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo
+                        "<a href='moviedetails.php?movieid={$row["movieid"]}'>
+                            <div class='card'> 
+                                <div class='image-box'>
+                                    <img src='{$row["image_url"]}'>
+                                </div>
+                                <div class='content'>
+                                    <h2>{$row["title"]}</h2>
+                                    <p>{$row["description"]}</p>
+                                </div>
+                            </div>
+                        </a>";
+                    }
+                }
+                ?>
+            </div>
+        </div>
+        <div class="heading-box">
+            <div style="flex: 1;">
+                <h2>Users Also Liked</h2>
+            </div>
+            <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href="" style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div>
+        </div>
+        <div class="mfilm-box">
+            <div class="film-box" id="new-releases">
+                <?php
+                $sql = "SELECT * FROM movies WHERE genre ='{$genre}' ORDER BY RAND() LIMIT 5";
+                $result = mysqli_query($conn, "$sql");
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo
+                        "<a href='moviedetails.php?movieid={$row["movieid"]}'>
+                            <div class='card'> 
+                                <div class='image-box'>
+                                    <img src='{$row["image_url"]}'>
+                                </div>
+                                <div class='content'>
+                                    <h2>{$row["title"]}</h2>
+                                    <p>{$row["description"]}</p>
+                                </div>
+                            </div>
+                        </a>";
+                    }
+                }
+                ?>
+            </div>
         </div>
     </div>
 </body>

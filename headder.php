@@ -170,7 +170,9 @@ include("db_connection.php");
             position: fixed;
             width: 100%;
             height: 100%;
-            background-color: rgba(35, 36, 35, 0.379);
+            top: 0;
+            left: 0;
+            background-color: rgba(35, 36, 35, 0.679);
             z-index: 1;
             align-items: center;
             justify-content: center;
@@ -208,6 +210,7 @@ include("db_connection.php");
             height: 400px;
             margin: 3em auto;
             border-radius: 7px;
+            box-shadow: 0px 5px 70px black;
         }
 
         .form-wrap .tabs {
@@ -408,7 +411,7 @@ include("db_connection.php");
             <nav class="navbar">
                 <div class="left-box">
                     <div class="in-box">
-                        <button type="button" class="logo-name">
+                        <button type="submit" class="logo-name">
                             <img src="Images/Logos/logo.png">
                         </button>
                     </div>
@@ -482,6 +485,8 @@ include("db_connection.php");
         function toggleLoginBox() {
             const loginBoxContainer = document.getElementById('loginBoxContainer');
             loginBoxContainer.classList.toggle('show');
+            // Toggle the overflow property of the body
+            document.body.style.overflow = loginBoxContainer.classList.contains('show') ? 'hidden' : 'auto';
         }
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

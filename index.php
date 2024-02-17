@@ -20,15 +20,16 @@ include("headder.php");
         <div class="heading-box">
             <h2>New Releases</h2>
         </div>
-        <div class="label-box">
-            <div class="container">
-                <?php
-                $sql = "SELECT * FROM newreleases JOIN movies ON movieid=mid AND r_date > '2019-01-01'";
-                $result = mysqli_query($conn, "$sql");
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo
-                        "<div class='mcard active'>
+        <a href="#new-releases">
+            <div class="label-box">
+                <div class="container">
+                    <?php
+                    $sql = "SELECT * FROM newreleases JOIN movies ON movieid=mid AND r_date > '2019-01-01' ORDER BY RAND()";
+                    $result = mysqli_query($conn, "$sql");
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo
+                            "<div class='mcard active'>
                                 <img class='background' src='{$row["backdrop_url"]}' alt=''>
                                 <div class='mcard-content'>
                                     <div class='profile-image'>
@@ -38,13 +39,14 @@ include("headder.php");
                                 </div>
                                 <div class='backdrop'></div>
                             </div>";
+                        }
+                    } else {
+                        echo "NO RESULTS:";
                     }
-                } else {
-                    echo "NO RESULTS:";
-                }
-                ?>
+                    ?>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
     <div class="main">
         <div class="heading-box">
@@ -54,9 +56,9 @@ include("headder.php");
             <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href="" style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div>
         </div>
         <div class="mfilm-box">
-            <div class="film-box">
+            <div class="film-box" id="new-releases">
                 <?php
-                $sql = "SELECT * FROM newreleases JOIN movies ON movieid=mid AND r_date > '2019-01-01' LIMIT 5";
+                $sql = "SELECT * FROM newreleases JOIN movies ON movieid=mid AND r_date > '2019-01-01' ORDER BY RAND() LIMIT 5";
                 $result = mysqli_query($conn, "$sql");
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -94,7 +96,7 @@ include("headder.php");
         <div class="mfilm-box">
             <div class="film-box">
                 <?php
-                $sql = "SELECT * FROM movies WHERE imdb_rating > 8.0 AND language IN (SELECT language FROM movies WHERE imdb_rating > 8.0 GROUP BY language)GROUP BY language";
+                $sql = "SELECT * FROM movies WHERE imdb_rating > 7.0 AND language IN (SELECT language FROM movies WHERE imdb_rating > 8.0 ORDER BY RAND())GROUP BY language";
                 $result = mysqli_query($conn, "$sql");
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -124,7 +126,7 @@ include("headder.php");
         <div class="mfilm-box">
             <div class="film-box">
                 <?php
-                $sql = "SELECT * FROM movies WHERE imdb_rating > 8.0 AND language='English'  ORDER BY title LIMIT 5";
+                $sql = "SELECT * FROM movies WHERE imdb_rating > 8.0 AND language='English'  ORDER BY RAND() LIMIT 5";
                 $result = mysqli_query($conn, "$sql");
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -154,7 +156,7 @@ include("headder.php");
         <div class="mfilm-box">
             <div class="film-box">
                 <?php
-                $sql = "SELECT * FROM movies WHERE imdb_rating > 8.0 AND language='Malayalam' ORDER BY title LIMIT 5";
+                $sql = "SELECT * FROM movies WHERE imdb_rating > 8.0 AND language='Malayalam' ORDER BY RAND() LIMIT 5";
                 $result = mysqli_query($conn, "$sql");
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -184,7 +186,7 @@ include("headder.php");
         <div class="mfilm-box">
             <div class="film-box">
                 <?php
-                $sql = "SELECT * FROM movies WHERE imdb_rating > 8.0 AND language='Hindi' ORDER BY title LIMIT 5";
+                $sql = "SELECT * FROM movies WHERE imdb_rating > 8.0 AND language='Hindi' ORDER BY RAND() LIMIT 5";
                 $result = mysqli_query($conn, "$sql");
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -214,7 +216,7 @@ include("headder.php");
         <div class="mfilm-box">
             <div class="film-box">
                 <?php
-                $sql = "SELECT * FROM movies WHERE imdb_rating > 8.0 AND language='Tamil' ORDER BY title LIMIT 5";
+                $sql = "SELECT * FROM movies WHERE imdb_rating > 8.0 AND language='Tamil' ORDER BY RAND() LIMIT 5";
                 $result = mysqli_query($conn, "$sql");
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
