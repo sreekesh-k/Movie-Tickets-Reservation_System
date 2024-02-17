@@ -96,7 +96,7 @@ include("headder.php");
         <div class="mfilm-box">
             <div class="film-box">
                 <?php
-                $sql = "SELECT * FROM movies WHERE imdb_rating > 7.0 AND language IN (SELECT language FROM movies WHERE imdb_rating > 8.0 ORDER BY RAND())GROUP BY language";
+                $sql = "SELECT * FROM movies WHERE imdb_rating > 8.0 ORDER BY RAND() LIMIT 5";
                 $result = mysqli_query($conn, "$sql");
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
