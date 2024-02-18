@@ -386,6 +386,32 @@ include("db_connection.php");
             border: none;
         }
 
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-10px);
+            }
+
+            50% {
+                transform: translateX(10px);
+            }
+
+            75% {
+                transform: translateX(-5px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .shake {
+            animation: shake 0.5s ease;
+        }
+
         .main {
             margin: 80px 170px;
             box-sizing: border-box;
@@ -424,29 +450,12 @@ include("db_connection.php");
                         ?>
                     </div>
                     <div id="login-tab-content">
-                        <form class="login-form" action="" method="post">
-                            <input type="text" class="input" id="user_login" name="username" autocomplete="off" placeholder="Email or Username">
-                            <input type="password" class="input" id="user_pass" name="password" autocomplete="off" placeholder="Password">
+                        <form class="login-form" action="" method="post" onsubmit="login(event)">
+                            <input type="text" class="input" id="user_login" name="username" autocomplete="off" placeholder="Email or Username" required>
+                            <input type="password" class="input" id="user_pass" name="password" autocomplete="off" placeholder="Password" required>
                             <input type="submit" class="button" value="Login" name="login">
+                            <div id="loginError" style="color: red; display: none;"></div>
                         </form>
-                        <?php
-                        if (isset($_POST["login"])) {
-                            $username = $_POST["username"];
-                            $password = $_POST["password"];
-                            $query = "SELECT * FROM users WHERE (username='{$username}' OR emailid='{$username}') AND password='{$password}'";
-                            $result = mysqli_query($conn, $query);
-                            if (mysqli_num_rows($result) > 0) {
-                                $row = mysqli_fetch_array($result);
-                                $username = $row["username"];
-                                $password = $row["password"];
-                                session_start();
-                                sleep(1);
-                                $_SESSION["username"] = $username;
-                            } else {
-                                echo "<div style='color: red;'>Username or password is invalid.</div>";
-                            }
-                        }
-                        ?>
                     </div>
                 </div>
             </div>
@@ -561,6 +570,42 @@ include("db_connection.php");
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('.login-form').submit(function(e) {
+                e.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: 'validateuser.php',
+                    data: formData,
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.success) {
+                            // Login successful, reload the page
+                            window.location.reload();
+                        } else {
+                            // Login failed, display error message and add shake animation to login box
+                            $('#loginError').text('Username or password is invalid.').show();
+                            $('.form-wrap').addClass('shake');
+                            setTimeout(function() {
+                                $('.form-wrap').removeClass('shake');
+                            }, 1000); // Adjust the delay as needed
+                            setTimeout(function() {
+                                $('#loginError').hide();
+                            }, 3000); // Hide error message after 3 seconds
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle AJAX errors
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+
+
 </body>
 
 </html>
