@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("db_connection.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +11,16 @@ include("db_connection.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <title>Document</title> -->
     <style>
+        /* Hide scrollbar for Chrome, Safari, and Opera */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge, and Firefox */
+        * {
+            scrollbar-width: none;
+        }
+
         body {
             font-family: Roboto, sans-serif;
             overflow-x: hidden;
@@ -166,7 +177,8 @@ include("db_connection.php");
             border-radius: 6px;
             cursor: pointer;
         }
-        .signin-btn a{
+
+        .signin-btn a {
             text-decoration: none;
             color: white;
         }
@@ -396,9 +408,9 @@ include("db_connection.php");
                 <div class="tabs-content">
                     <div id="signup-tab-content" class="active">
                         <form class="signup-form" action="" method="post">
-                            <input type="email" class="input" id="user_email" name="email" autocomplete="off" placeholder="Email">
-                            <input type="text" class="input" id="user_name" name="username" autocomplete="off" placeholder="Username">
-                            <input type="password" class="input" id="user_pass" name="password" autocomplete="off" placeholder="Password">
+                            <input type="email" class="input" id="user_email" name="email" autocomplete="off" placeholder="Email" required>
+                            <input type="text" class="input" id="user_name" name="username" autocomplete="off" placeholder="Username" required>
+                            <input type="password" class="input" id="user_pass" name="password" autocomplete="off" placeholder="Password" required>
                             <input type="submit" class="button" value="Sign Up" name="signup">
                         </form>
                         <?php
