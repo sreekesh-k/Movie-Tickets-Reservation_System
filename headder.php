@@ -464,9 +464,11 @@ include("db_connection.php");
             <nav class="navbar">
                 <div class="left-box">
                     <div class="in-box">
-                        <button type="submit" class="logo-name">
-                            <img src="Images/Logos/logo.png">
-                        </button>
+                        <a href="index.php" class="logo-name">
+                            <button type="button" class="logo-name">
+                                <img src="Images/Logos/logo.png">
+                            </button>
+                        </a>
                     </div>
 
                 </div>
