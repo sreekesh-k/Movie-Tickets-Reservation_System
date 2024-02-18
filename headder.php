@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("db_connection.php");
 ?>
 <!DOCTYPE html>
@@ -164,6 +165,10 @@ include("db_connection.php");
             align-items: center;
             border-radius: 6px;
             cursor: pointer;
+        }
+        .signin-btn a{
+            text-decoration: none;
+            color: white;
         }
 
         .login-box-container {
@@ -391,18 +396,45 @@ include("db_connection.php");
                 <div class="tabs-content">
                     <div id="signup-tab-content" class="active">
                         <form class="signup-form" action="" method="post">
-                            <input type="email" class="input" id="user_email" autocomplete="off" placeholder="Email">
-                            <input type="text" class="input" id="user_name" autocomplete="off" placeholder="Username">
-                            <input type="password" class="input" id="user_pass" autocomplete="off" placeholder="Password">
-                            <input type="submit" class="button" value="Sign Up">
+                            <input type="email" class="input" id="user_email" name="email" autocomplete="off" placeholder="Email">
+                            <input type="text" class="input" id="user_name" name="username" autocomplete="off" placeholder="Username">
+                            <input type="password" class="input" id="user_pass" name="password" autocomplete="off" placeholder="Password">
+                            <input type="submit" class="button" value="Sign Up" name="signup">
                         </form>
+                        <?php
+                        if (isset($_POST["signup"])) {
+                            $username = $_POST["username"];
+                            $email = $_POST["email"];
+                            $password = $_POST["password"];
+                            $query = "INSERT INTO users(username,password,emailid) VALUES ('{$username}','{$password}','{$email}')";
+                            mysqli_query($conn, $query);
+                        }
+                        ?>
                     </div>
                     <div id="login-tab-content">
                         <form class="login-form" action="" method="post">
-                            <input type="text" class="input" id="user_login" autocomplete="off" placeholder="Email or Username">
-                            <input type="password" class="input" id="user_pass" autocomplete="off" placeholder="Password">
-                            <input type="submit" class="button" value="Login">
+                            <input type="text" class="input" id="user_login" name="username" autocomplete="off" placeholder="Email or Username">
+                            <input type="password" class="input" id="user_pass" name="password" autocomplete="off" placeholder="Password">
+                            <input type="submit" class="button" value="Login" name="login">
                         </form>
+                        <?php
+                        if (isset($_POST["login"])) {
+                            $username = $_POST["username"];
+                            $password = $_POST["password"];
+                            $query = "SELECT * FROM users WHERE (username='{$username}' OR emailid='{$username}') AND password='{$password}'";
+                            $result = mysqli_query($conn, $query);
+                            if (mysqli_num_rows($result) > 0) {
+                                $row = mysqli_fetch_array($result);
+                                $username = $row["username"];
+                                $password = $row["password"];
+                                session_start();
+                                sleep(1);
+                                $_SESSION["username"] = $username;
+                            } else {
+                                echo "<div style='color: red;'>Username or password is invalid.</div>";
+                            }
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -433,7 +465,19 @@ include("db_connection.php");
                     <div class="in-box">
                         <div class="lastbox">
                             <div></div>
-                            <button class="signin-btn" onclick="toggleLoginBox()">Sign in</button>
+                            <?php
+                            if (isset($_SESSION["username"])) {
+                                echo "<button class='signin-btn' ><a href='logout.php'>Sign Out</a></button>";
+                            } else {
+                                echo "<button class='signin-btn' onclick='toggleLoginBox()'>Sign in</button>";
+                            }
+                            if (isset($_POST['logout'])) {
+                                $_SESSION = array();
+                                session_destroy();
+                                header("Location: {$_SERVER['PHP_SELF']}");
+                                exit();
+                            }
+                            ?>
                             <button type="button" class="menu-btn">
                                 <span class="line"></span>
                                 <span class="line"></span>
