@@ -74,11 +74,22 @@ include("headder.php");
                                 <div class='cata-box'>" .
                     date("d-m-y", $date) .
                     "</div>
-                            </div> 
-                            <hr>
-                            <h4>Director: </h4>
-                            <hr>
-                            <h4>Star: </h4>
+                            </div>";
+                $sql1 = "SELECT * FROM movies m JOIN moviesstars ms ON m.movieid= ms.moviesid Join stars s ON ms.starsid=s.starsid WHERE m.movieid='{$movieid}'";
+                $result1 = mysqli_query($conn, "$sql1");
+                $sql2 = "SELECT * FROM movies m JOIN moviesdirectors md ON m.movieid= md.moviesid Join directors d ON md.directorsid=d.directorid WHERE m.movieid='{$movieid}'";
+                $result2 = mysqli_query($conn, "$sql2");
+                if (mysqli_num_rows($result2) > 0) {
+                    while ($row2 = mysqli_fetch_assoc($result2)) {
+                        echo "<hr><h4>Director: <a href ='https://en.wikipedia.org/wiki/{$row2["directorname"]}'> {$row2["directorname"]}</a></h4>";
+                    }
+                }
+                if (mysqli_num_rows($result1) > 0) {
+                    while ($row1 = mysqli_fetch_assoc($result1)) {
+                        echo "<hr><h4>Star: <a href ='https://en.wikipedia.org/wiki/{$row1["stars_name"]}'> {$row1["stars_name"]} </a></h4>";
+                    }
+                }
+                echo "
                         </div>
                     </div>
                 </div>";
