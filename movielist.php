@@ -23,6 +23,12 @@ include("headder.php");
                 if (isset($_GET["title"])) {
                     $conditions[] = "title LIKE '%" . $_GET["title"] . "%'";
                 }
+                if (isset($_GET["imdb_rating"])) {
+                    $conditions[] = "imdb_rating >" . $_GET["imdb_rating"];
+                }
+                if (isset($_GET["r_date"])) {
+                    $conditions[] = "r_date >" . $_GET["r_date"];
+                }
                 if (isset($_GET["genre"])) {
                     $conditions[] = "genre LIKE '%" . $_GET["genre"] . "%'";
                 }

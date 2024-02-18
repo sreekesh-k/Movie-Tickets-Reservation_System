@@ -102,7 +102,7 @@ include("headder.php");
             <div style="flex: 1;">
                 <h2>Similar <?php echo $lang . " " . $genre; ?> Movies</h2>
             </div>
-            <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href="" style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div>
+            <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href=<?php echo "movielist.php?language={$lang}&genre={$genre}"; ?> style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div>
         </div>
         <div class="mfilm-box">
             <div class="film-box" id="new-releases">
@@ -132,7 +132,7 @@ include("headder.php");
             <div style="flex: 1;">
                 <h2>Users Also Liked</h2>
             </div>
-            <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href="" style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div>
+            <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href=<?php echo "movielist.php?genre={$genre}"; ?> style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div>
         </div>
         <div class="mfilm-box">
             <div class="film-box" id="new-releases">

@@ -53,7 +53,7 @@ include("headder.php");
             <div style="flex: 1;">
                 <h2>Book now</h2>
             </div>
-            <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href="" style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div>
+            <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href=<?php echo "movielist.php?r_date='2019-01-01'"; ?> style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div>
         </div>
         <div class="mfilm-box">
             <div class="film-box" id="new-releases">
@@ -91,7 +91,7 @@ include("headder.php");
             <div style="flex: 1;">
                 <h2>Must Watch</h2>
             </div>
-            <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href="" style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div>
+            <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href=<?php echo "movielist.php?imdb_rating=8.0"; ?> style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div>
         </div>
         <div class="mfilm-box">
             <div class="film-box">
@@ -121,7 +121,7 @@ include("headder.php");
             <div style="flex: 1;">
                 <h2>English</h2>
             </div>
-            <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href="" style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div>
+            <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href=<?php echo "movielist.php?language=English"; ?> style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div>
         </div>
         <div class="mfilm-box">
             <div class="film-box">
@@ -151,7 +151,7 @@ include("headder.php");
             <div style="flex: 1;">
                 <h2>Malayalam</h2>
             </div>
-            <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href="" style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div>
+            <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href=<?php echo "movielist.php?language=Malayalam"; ?> style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div>
         </div>
         <div class="mfilm-box">
             <div class="film-box">
@@ -181,7 +181,7 @@ include("headder.php");
             <div style="flex: 1;">
                 <h2>Hindi</h2>
             </div>
-            <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href="" style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div>
+            <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href=<?php echo "movielist.php?language=Hindi"; ?> style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div>
         </div>
         <div class="mfilm-box">
             <div class="film-box">
@@ -211,7 +211,7 @@ include("headder.php");
             <div style="flex: 1;">
                 <h2>Tamil</h2>
             </div>
-            <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href="" style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div>
+            <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href=<?php echo "movielist.php?language=Tamil"; ?> style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div>
         </div>
         <div class="mfilm-box">
             <div class="film-box">
