@@ -432,22 +432,15 @@ include("db_connection.php");
                     <h3 class="login-tab"><a href="#login-tab-content" style="border-top-right-radius: 7px;">Login</a></h3>
                 </div>
                 <div class="tabs-content">
-                    <div id="signup-tab-content" class="active">
+                    <div id="signup-tab-content" class="active" onsubmit="Signin(event)">
                         <form class="signup-form" action="" method="post">
                             <input type="email" class="input" id="user_email" name="email" autocomplete="off" placeholder="Email" required>
                             <input type="text" class="input" id="user_name" name="username" autocomplete="off" placeholder="Username" required>
                             <input type="password" class="input" id="user_pass" name="password" autocomplete="off" placeholder="Password" required>
                             <input type="submit" class="button" value="Sign Up" name="signup">
+                            <div id="signupError" style="color: red; display: none;"></div>
+                            <div id="signupSuccess" style="color: green; display: none;"></div>
                         </form>
-                        <?php
-                        if (isset($_POST["signup"])) {
-                            $username = $_POST["username"];
-                            $email = $_POST["email"];
-                            $password = $_POST["password"];
-                            $query = "INSERT INTO users(username,password,emailid) VALUES ('{$username}','{$password}','{$email}')";
-                            mysqli_query($conn, $query);
-                        }
-                        ?>
                     </div>
                     <div id="login-tab-content">
                         <form class="login-form" action="" method="post" onsubmit="login(event)">
@@ -596,6 +589,34 @@ include("db_connection.php");
                             setTimeout(function() {
                                 $('#loginError').hide();
                             }, 3000); // Hide error message after 3 seconds
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle AJAX errors
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+            $('.signup-form').submit(function(e) {
+                e.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: 'signupvalidation.php',
+                    data: formData,
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.success) {
+                            $('#signupError').hide();
+                            $('#signupSuccess').text('Signup successfull.Now you can login').show();
+                            window.location.reload();
+                        } else {
+                            $('#signupError').text('Username is already registered.').show();
+                            $('#signupSuccess').hide();
+                            $('.form-wrap').addClass('shake');
+                            setTimeout(function() {
+                                $('.form-wrap').removeClass('shake');
+                            }, 1000); // Adjust the delay as needed
                         }
                     },
                     error: function(xhr, status, error) {
