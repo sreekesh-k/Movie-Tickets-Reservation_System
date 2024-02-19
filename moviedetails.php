@@ -92,8 +92,21 @@ include("headder.php");
                     $star = $row1["stars_name"];
                     echo "<hr><h4>Star: <a href ='https://en.wikipedia.org/wiki/{$star}'> {$row1["stars_name"]} </a></h4>";
                 }
+                if ($row["r_date"] > '2019-01-01') {
+
+                    echo
+                    "<form action='' method='get'>
+                    <input type='submit' name = 'booknow' class='bookorwatch' value='Book Now' >
+                    </form>
+                    ";
+                } else {
+                    echo
+                    "<form action='' method='get'>
+                    <input type='submit' name = 'watch' class='bookorwatch' value='Watch Now' >
+                    </form>
+                    ";
+                }
                 echo "
-                <button>booknow</button>
                         </div>
                     </div>
                 </div>";
