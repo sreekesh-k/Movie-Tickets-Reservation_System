@@ -13,39 +13,43 @@ include("headder.php");
 
 <body>
     <div class="main">
-        <div style="display: flex;flex-wrap: wrap; gap:30px;width:100%; align-items: center; justify-content:flex-start;">
-            <?php
-            if ($_SERVER["REQUEST_METHOD"] == "GET") {
-                $conditions = array();
-                if (isset($_GET["movieid"])) {
-                    $conditions[] = "movieid = " . $_GET["movieid"];
-                }
-                if (isset($_GET["title"])) {
-                    $conditions[] = "title LIKE '%" . $_GET["title"] . "%'";
-                }
-                if (isset($_GET["imdb_rating"])) {
-                    $conditions[] = "imdb_rating >" . $_GET["imdb_rating"];
-                }
-                if (isset($_GET["r_date"])) {
-                    $conditions[] = "r_date >" . $_GET["r_date"];
-                }
-                if (isset($_GET["genre"])) {
-                    $conditions[] = "genre LIKE '%" . $_GET["genre"] . "%'";
-                }
-                if (isset($_GET["language"])) {
-                    $conditions[] = "language LIKE '%" . $_GET["language"] . "%'";
-                }
-                // Check if any conditions are added
-                if (!empty($conditions)) {
-                    $where_clause = " WHERE " . implode(" AND ", $conditions);
-                } else {
-                    $where_clause = "";
-                }
-                $sql = "SELECT * FROM movies" . $where_clause;
-                $result = mysqli_query($conn, $sql);
-                while ($row = mysqli_fetch_array($result)) {
-                    echo
-                    "<a href='moviedetails.php?movieid={$row["movieid"]}'>
+        <div class="heading-box">
+            <div style="flex: 1;">
+                <h2><?php echo "Related Movies"; ?></h2>
+            </div>
+            <div style="display: flex;flex-wrap: wrap; gap:30px;width:100%; align-items: center; justify-content:flex-start;">
+                <?php
+                if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                    $conditions = array();
+                    if (isset($_GET["movieid"])) {
+                        $conditions[] = "movieid = " . $_GET["movieid"];
+                    }
+                    if (isset($_GET["title"])) {
+                        $conditions[] = "title LIKE '%" . $_GET["title"] . "%'";
+                    }
+                    if (isset($_GET["imdb_rating"])) {
+                        $conditions[] = "imdb_rating >" . $_GET["imdb_rating"];
+                    }
+                    if (isset($_GET["r_date"])) {
+                        $conditions[] = "r_date > '" . $_GET["r_date"] . "'";
+                    }
+                    if (isset($_GET["genre"])) {
+                        $conditions[] = "genre LIKE '%" . $_GET["genre"] . "%'";
+                    }
+                    if (isset($_GET["language"])) {
+                        $conditions[] = "language LIKE '%" . $_GET["language"] . "%'";
+                    }
+                    // Check if any conditions are added
+                    if (!empty($conditions)) {
+                        $where_clause = " WHERE " . implode(" AND ", $conditions);
+                    } else {
+                        $where_clause = "";
+                    }
+                    $sql = "SELECT * FROM movies" . $where_clause . "ORDER BY RAND()";
+                    $result = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_array($result)) {
+                        echo
+                        "<a href='moviedetails.php?movieid={$row["movieid"]}'>
                         <div class='card'> 
                             <div class='image-box'>
                                 <img src='{$row["image_url"]}'>
@@ -56,13 +60,13 @@ include("headder.php");
                             </div>
                         </div>
                     </a>";
+                    }
                 }
-            }
 
 
-            ?>
+                ?>
+            </div>
         </div>
-    </div>
 
 </body>
 

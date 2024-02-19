@@ -53,7 +53,7 @@ include("headder.php");
             <div style="flex: 1;">
                 <h2>Book now</h2>
             </div>
-            <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href=<?php echo "movielist.php?r_date='2019-01-01'"; ?> style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div>
+            <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href=<?php echo "movielist.php?r_date=2019-01-01"; ?> style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div>
         </div>
         <div class="mfilm-box">
             <div class="film-box" id="new-releases">
