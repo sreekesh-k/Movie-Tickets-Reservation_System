@@ -95,18 +95,18 @@ include("headder.php");
                 if ($row["r_date"] > '2019-01-01') {
 
                     echo
-                    "<form action='' method='get'>
+                    "<hr><br><center><form action='bookings.php' method='get'>
                     <input type='submit' name = 'booknow' class='bookorwatch' value='Book Now' >
-                    </form>
+                    </form></center>
                     ";
                 } else {
                     echo
-                    "<form action='' method='get'>
+                    "<hr><br><center><a href='https://www.google.com/search?q=watch+{$row["title"]}'>
                     <input type='submit' name = 'watch' class='bookorwatch' value='Watch Now' >
-                    </form>
+                    </a></center>
                     ";
                 }
-                echo "
+                echo "  
                         </div>
                     </div>
                 </div>";
