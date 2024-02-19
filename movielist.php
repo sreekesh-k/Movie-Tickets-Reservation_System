@@ -39,6 +39,9 @@ include("headder.php");
                     if (isset($_GET["language"])) {
                         $conditions[] = "language LIKE '%" . $_GET["language"] . "%'";
                     }
+                    if (isset($_GET["searcbox"])) {
+                        $conditions[] = "title LIKE '%" . $_GET["searcbox"] . "%'";
+                    }
                     // Check if any conditions are added
                     if (!empty($conditions)) {
                         $where_clause = " WHERE " . implode(" AND ", $conditions);

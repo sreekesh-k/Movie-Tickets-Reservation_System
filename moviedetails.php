@@ -77,19 +77,23 @@ include("headder.php");
                             </div>";
                 $sql1 = "SELECT * FROM movies m JOIN moviesstars ms ON m.movieid= ms.moviesid Join stars s ON ms.starsid=s.starsid WHERE m.movieid='{$movieid}'";
                 $result1 = mysqli_query($conn, "$sql1");
+
                 $sql2 = "SELECT * FROM movies m JOIN moviesdirectors md ON m.movieid= md.moviesid Join directors d ON md.directorsid=d.directorid WHERE m.movieid='{$movieid}'";
                 $result2 = mysqli_query($conn, "$sql2");
+
                 if (mysqli_num_rows($result2) > 0) {
-                    while ($row2 = mysqli_fetch_assoc($result2)) {
-                        echo "<hr><h4>Director: <a href ='https://en.wikipedia.org/wiki/{$row2["directorname"]}'> {$row2["directorname"]}</a></h4>";
-                    }
+
+                    $row2 = mysqli_fetch_assoc($result2);
+                    $director = $row2["directorname"];
+                    echo "<hr><h4>Director: <a href ='https://en.wikipedia.org/wiki/{$director}'> {$row2["directorname"]}</a></h4>";
                 }
                 if (mysqli_num_rows($result1) > 0) {
-                    while ($row1 = mysqli_fetch_assoc($result1)) {
-                        echo "<hr><h4>Star: <a href ='https://en.wikipedia.org/wiki/{$row1["stars_name"]}'> {$row1["stars_name"]} </a></h4>";
-                    }
+                    $row1 = mysqli_fetch_assoc($result1);
+                    $star = $row1["stars_name"];
+                    echo "<hr><h4>Star: <a href ='https://en.wikipedia.org/wiki/{$star}'> {$row1["stars_name"]} </a></h4>";
                 }
                 echo "
+                <button>booknow</button>
                         </div>
                     </div>
                 </div>";
@@ -138,6 +142,66 @@ include("headder.php");
             <div class="film-box" id="new-releases">
                 <?php
                 $sql = "SELECT * FROM movies WHERE genre ='{$genre}' ORDER BY RAND() LIMIT 5";
+                $result = mysqli_query($conn, "$sql");
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo
+                        "<a href='moviedetails.php?movieid={$row["movieid"]}'>
+                            <div class='card'> 
+                                <div class='image-box'>
+                                    <img src='{$row["image_url"]}'>
+                                </div>
+                                <div class='content'>
+                                    <h2>{$row["title"]}</h2>
+                                    <p>{$row["description"]}</p>
+                                </div>
+                            </div>
+                        </a>";
+                    }
+                }
+                ?>
+            </div>
+        </div>
+        <div class="heading-box">
+            <div style="flex: 1;">
+                <h2>Directed by <?php echo $director; ?></h2>
+            </div>
+            <!-- <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href=<?php echo "movielist.php?genre={$genre}"; ?> style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div> -->
+        </div>
+        <div class="mfilm-box">
+            <div class="film-box" id="new-releases">
+                <?php
+                $sql = "SELECT * FROM movies m JOIN moviesdirectors md ON m.movieid= md.moviesid Join directors d ON md.directorsid=d.directorid WHERE directorname='{$director}'";
+                $result = mysqli_query($conn, "$sql");
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo
+                        "<a href='moviedetails.php?movieid={$row["movieid"]}'>
+                            <div class='card'> 
+                                <div class='image-box'>
+                                    <img src='{$row["image_url"]}'>
+                                </div>
+                                <div class='content'>
+                                    <h2>{$row["title"]}</h2>
+                                    <p>{$row["description"]}</p>
+                                </div>
+                            </div>
+                        </a>";
+                    }
+                }
+                ?>
+            </div>
+        </div>
+        <div class="heading-box">
+            <div style="flex: 1;">
+                <h2><?php echo $star; ?> Movies</h2>
+            </div>
+            <!-- <div style="flex: 1;display:flex; align-items: center;justify-content:flex-end"><a href=<?php echo "movielist.php?genre={$genre}"; ?> style="color: rgb(68, 248, 134);text-decoration: none;">view more></a></div> -->
+        </div>
+        <div class="mfilm-box">
+            <div class="film-box" id="new-releases">
+                <?php
+                $sql1 = "SELECT * FROM movies m JOIN moviesstars ms ON m.movieid= ms.moviesid Join stars s ON ms.starsid=s.starsid WHERE stars_name='{$star}'";
                 $result = mysqli_query($conn, "$sql");
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {

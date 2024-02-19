@@ -467,7 +467,7 @@ include("db_connection.php");
                 </div>
                 <div class="center-box">
                     <div class="in-box">
-                        <form action="">
+                        <form action="movielist.php" method="get">
                             <div class="searchbox">
                                 <input type="text" name="searcbox" placeholder="search movies">
                             </div>
