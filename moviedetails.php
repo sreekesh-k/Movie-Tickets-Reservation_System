@@ -95,9 +95,9 @@ include("headder.php");
                 if ($row["r_date"] > '2019-01-01') {
 
                     echo
-                    "<hr><br><center><form action='bookings.php' method='get'>
+                    "<hr><br><center><a href='bookings.php?movieid={$movieid}'>
                     <input type='submit' name = 'booknow' class='bookorwatch' value='Book Now' >
-                    </form></center>
+                    </a></center>
                     ";
                 } else {
                     echo
