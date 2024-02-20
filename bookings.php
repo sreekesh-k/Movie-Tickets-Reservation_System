@@ -46,16 +46,31 @@
     <h2>Select your seat:</h2>
 
     <!-- Seat grid -->
-    <div class="seat-grid">
-        <?php
-        // Assuming you have 80 seats
-        $totalSeats = 80;
-        for ($i = 1; $i <= $totalSeats; $i++) {
-            echo "<input type='checkbox' id='seat{$i}' class='seat-checkbox' name='seats[]' value='seat{$i}'>";
-            echo "<label for='seat{$i}' class='seat-label'></label>";
+    <form id="seatForm" action="bookedseats.php" method="post"> <!-- Changed to POST method for security -->
+        <div class="seat-grid">
+            <?php
+            // Assuming you have 80 seats
+            $totalSeats = 80;
+            for ($i = 1; $i <= $totalSeats; $i++) {
+                echo "<input type='checkbox' id='seat{$i}' class='seat-checkbox' name='seats[]' value='seat{$i}'>";
+                echo "<label for='seat{$i}' class='seat-label'></label>";
+            }
+            ?>
+        </div>
+        <!-- Submit (Confirm) Button -->
+        <button type="button" onclick="showSelectedSeats()">Confirm Selection</button>
+    </form>
+
+    <!-- Script to display selected seats -->
+    <script>
+        function showSelectedSeats() {
+            var selectedSeats = document.querySelectorAll('.seat-checkbox:checked');
+            var selectedSeatsArray = Array.from(selectedSeats).map(seat => seat.value);
+            alert("Selected Seats: " + selectedSeatsArray.join(", "));
+            // You can also perform other actions with the selected seats here, such as submitting the form
+            // document.getElementById("seatForm").submit();
         }
-        ?>
-    </div>
+    </script>
 
 </body>
 
