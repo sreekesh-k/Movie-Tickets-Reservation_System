@@ -1,0 +1,49 @@
+.Seats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Style for the grid */
+.seat-grid {
+    display: grid;
+    grid-template-columns: repeat(14, 50px);
+    /* Adjust according to your preference */
+    gap: 5px;
+    /* Adjust according to your preference */
+}
+
+/* Style for each seat checkbox */
+.seat-checkbox {
+    display: none;
+    /* Hide the checkboxes */
+}
+
+/* Style for the label representing each seat */
+.seat-label {
+
+    width: 50px;
+    /* Adjust according to your preference */
+    height: 50px;
+    /* Adjust according to your preference */
+    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: grey;
+    background-color: white;
+    border: solid 1px green;
+    text-align: center;
+    border-radius: 5px;
+    /* Add border for visibility */
+    cursor: pointer;
+}
+
+.seat-label:hover {
+    background-color: green;
+}
+
+/* Style for selected seats */
+.seat-checkbox:checked+.seat-label {
+    background-color: green;
+}
