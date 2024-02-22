@@ -76,14 +76,14 @@ if ((isset($_SESSION["username"]))) {
                         $insert_query = "INSERT INTO bookings (username, movieid, seatid) VALUES ('$uname', '$movieid', '$seatid')";
                         mysqli_query($conn, $insert_query);
                     }
-
+                    // header("Location: bookings.php");
+                    // exit();
                 } else {
                     // No seats selected, display an error message or take appropriate action
                     echo "Please select at least one seat.";
                 }
             }
             ?>
-
         </center>
     </div>
     <!-- Script to display selected seats -->
