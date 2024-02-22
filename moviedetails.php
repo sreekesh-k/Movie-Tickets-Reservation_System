@@ -96,15 +96,25 @@ include("headder.php");
 
                     echo
                     "<hr><br><center><a href='bookings.php?movieid={$movieid}'>
-                    <input type='submit' name = 'booknow' class='bookorwatch' value='Book Now' >
+                     <button type='button' name='watch' class='bookorwatch'>
+                      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'>
+                        <path fill='#ffffff' d='M8 5v14l11-7z'/>
+                        <path d='M0 0h24v24H0z' fill='none'/>
+                      </svg>
+                      <big>Book Now</big>
+                    </button>
                     </a></center>
                     ";
                 } else {
-                    echo
-                    "<hr><br><center><a href='https://www.google.com/search?q=watch+{$row["title"]}'>
-                    <input type='submit' name = 'watch' class='bookorwatch' value='Watch Now' >
-                    </a></center>
-                    ";
+                    echo "<hr><br><center><a href='https://www.google.com/search?q=watch+{$row["title"]}'>
+                    <button type='button' name='watch' class='bookorwatch'>
+                      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'>
+                        <path fill='#ffffff' d='M8 5v14l11-7z'/>
+                        <path d='M0 0h24v24H0z' fill='none'/>
+                      </svg>
+                       <big>Watch Now</big>
+                    </button>
+                    </a></center>";
                 }
                 echo "  
                         </div>
