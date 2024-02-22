@@ -36,19 +36,54 @@ if ((isset($_SESSION["username"]))) {
 
                     <div class="seat-grid">
                         <?php
+                        // Array to store booked seat IDs
+                        $bookedSeats = array();
+
+                        // Query to fetch booked seat IDs for the selected movie
+                        $sql1 = "SELECT seatid FROM bookings WHERE movieid='{$movieid}'";
+                        $result1 = mysqli_query($conn, $sql1);
+                        while ($row1 = mysqli_fetch_assoc($result1)) {
+                            // Store booked seat IDs in the array
+                            $bookedSeats[] = $row1["seatid"];
+                        }
+
+                        // Query to fetch all seats
                         $sql = "SELECT * FROM seats";
                         $result = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<input type='checkbox' id='seat{$row["seatno"]}' class='seat-checkbox' name='seats[]' value='seat{$row["seatno"]}'>";
+                            // Check if the current seat is booked
+                            $disabled = in_array($row["seatid"], $bookedSeats) ? "disabled" : ""; // Disable checkbox if seat is booked
+
+                            // Output the checkbox and label
+                            echo "<input type='checkbox' id='seat{$row["seatno"]}' class='seat-checkbox' name='seats[]' value='{$row["seatid"]}' $disabled>";
                             echo "<label for='seat{$row["seatno"]}' class='seat-label'>{$row["seatno"]}</label>";
                         }
                         ?>
+
                     </div>
 
                     <!-- Submit (Confirm) Button -->
-                    <button type="button" onclick="showSelectedSeats()">Confirm Selection</button>
+                    <input type="submit" name="submit" value="Confirm">
+                    <!-- When this si submitted ....which all seats are selected will be entered into bookings
+                        database as Insert into bookings(username,seatid,movieid) -->
                 </form>
             </div>
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
+                if (!empty($_POST["seats"])) {
+                    // Loop through each selected seat and insert into the bookings table
+                    foreach ($_POST["seats"] as $seatid) {
+                        $insert_query = "INSERT INTO bookings (username, movieid, seatid) VALUES ('$uname', '$movieid', '$seatid')";
+                        mysqli_query($conn, $insert_query);
+                    }
+
+                } else {
+                    // No seats selected, display an error message or take appropriate action
+                    echo "Please select at least one seat.";
+                }
+            }
+            ?>
+
         </center>
     </div>
     <!-- Script to display selected seats -->

@@ -47,3 +47,18 @@
 .seat-checkbox:checked+.seat-label {
     background-color: green;
 }
+
+/* Style for disabled seat checkboxes */
+.seat-checkbox:disabled+.seat-label {
+    background-color: grey;
+    cursor: not-allowed;
+    /* Change cursor to indicate that the seat is disabled */
+    color: white;
+    /* Change text color for better visibility */
+}
+
+/* Style for disabled seat labels (if needed) */
+.seat-checkbox:disabled+.seat-label:hover {
+    background-color: grey;
+    /* Keep the same color even on hover */
+}
