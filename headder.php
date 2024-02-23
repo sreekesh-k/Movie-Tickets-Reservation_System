@@ -485,7 +485,7 @@ include("db_connection.php");
                             if (isset($_SESSION["username"])) {
                                 echo "<button class='signin-btn' ><a href='logout.php'>Sign Out</a></button>";
                             } else {
-                                echo "<button class='signin-btn' onclick='toggleLoginBox()'>Sign in</button>";
+                                echo "<button class='signin-btn' id ='signinbtn' onclick='toggleLoginBox()'>Sign in</button>";
                             }
                             if (isset($_POST['logout'])) {
                                 $_SESSION = array();

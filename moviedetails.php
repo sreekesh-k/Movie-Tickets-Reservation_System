@@ -93,14 +93,23 @@ include("headder.php");
                     echo "<hr><h4>Star: <a href ='https://en.wikipedia.org/wiki/{$star}'> {$row1["stars_name"]} </a></h4>";
                 }
                 if ($row["r_date"] > '2019-01-01') {
-
-                    echo
-                    "<hr><br><center><a href='bookings.php?movieid={$movieid}'>
-                     <button type='button' name='watch' class='bookorwatch'>
-                      <big>Book Tickets</big>
-                    </button>
-                    </a></center>
-                    ";
+                    if (isset($_SESSION['username'])) {
+                        echo
+                        "<hr><br><center><a href='bookings.php?movieid={$movieid}'>
+                            <button type='button' name='watch' class='bookorwatch'>
+                            <big>Book Tickets</big>
+                            </button>
+                            </a></center>
+                            ";
+                    } else {
+                        echo
+                        "<hr><br><center>
+                            <button type='button' name='watch' onclick='toggleLoginBox()' class='bookorwatch'>
+                            <big>Login to Book Tickets</big>
+                            </button>
+                        </center>
+                            ";
+                    }
                 } else {
                     echo "<hr><br><center><a href='https://www.google.com/search?q=watch+{$row["title"]}'>
                     <button type='button' name='watch' class='bookorwatch'>
