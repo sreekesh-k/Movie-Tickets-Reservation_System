@@ -13,62 +13,41 @@ include("headder.php");
 <body>
     <div class='main'>
         <?php
-        if (isset($_SESSION["username"])) {
-            $uname = $_SESSION["username"];
-        }
-        $sql = "SELECT * FROM users u JOIN bookings b ON u.username=b.username JOIN movies m ON b.movieid=m.movieid WHERE u.username='$uname'";
+        // Assuming $conn is your database connection
+
+        // Get the username (you mentioned you already have this)
+        $username = $_SESSION["username"]; // Assuming you have stored the username in a session variable
+
+        // Query to fetch the tickets booked by the user
+        // Query to fetch the tickets booked by the user
+        $sql = "SELECT m.title AS movie_title, COUNT(b.seatid) AS num_seats, SUM(s.price) AS total_paid, MIN(b.bookingdate) AS booking_date
+FROM bookings b
+JOIN movies m ON b.movieid = m.movieid
+JOIN seats s ON b.seatid = s.seatid
+WHERE b.username = (SELECT username FROM users WHERE username = '$username')
+GROUP BY m.title";
+
         $result = mysqli_query($conn, $sql);
-        $seatNumbers = array();
+
         if (mysqli_num_rows($result) > 0) {
-            echo " <h2>$uname's Tickets</h2>";
+            echo "<h2>$username's Tickets</h2>";
+            echo "<table>";
+            echo "<tr><th>Movie</th><th>Seats</th><th>Paid</th><th>Booking Date</th></tr>";
             while ($row = mysqli_fetch_assoc($result)) {
-                $seatNumbers[] = $row['seatid'];
+                echo "<tr>";
+                echo "<td>{$row['movie_title']}</td>";
+                echo "<td>{$row['num_seats']}</td>";
+                echo "<td>{$row['total_paid']}</td>";
+                echo "<td>{$row['booking_date']}</td>";
+                echo "</tr>";
             }
+            echo "</table>";
         } else {
-            echo "<h2>You have not yet booked any tickets</h2>";
+            echo "No tickets found for $username.";
         }
-        ?>
-        <div class="container">
-            <div class='content'>
-                <div class='imgbox'>
-                    <?php
-                    if (mysqli_num_rows($result) > 0) {
-                        echo "
-                        <img src='{$row["image_url"]}'>
-                            ";
-                    ?>
-                </div>
-                <div class='detailsbox'>
-                <?php
-                        echo "<h3>Booked by: " . $uname . "</h3><hr>";
-                        echo "<h3>Movie: " . $row["title"] . "</h3><hr>";
-                        // Display selected seats to the user for confirmation
-                        $numberSeats = count($seatNumbers);
-                        echo "<h3>Number of Seats: " . $numberSeats . "</h3><hr>";
-                        echo "<h3>Selected Seats: ";
-                        foreach ($seatNumbers as $key => $seat) {
-                            $seatq = "SELECT * FROM seats WHERE seatid={$seat}";
-                            $res = mysqli_query($conn, $seatq);
-                            $ro = mysqli_fetch_array($res);
-                            echo "{$ro["seatno"]}";
-                            // Print comma if it's not the last seat
-                            if ($key < $numberSeats - 1) {
-                                echo ", ";
-                            }
-                        }
-                        echo "</h3><hr>";
-                        echo "Time: " . date("H:i:s");
-                        $price = $_SESSION["price"];
-                    }
-                ?>
-                <h3>Payment status: Success Rs.<?php echo $price; ?></h3>
-                <hr>
-                </div>
-            </div>
-        </div>
-        <?php
 
         ?>
+
     </div>
 </body>
 

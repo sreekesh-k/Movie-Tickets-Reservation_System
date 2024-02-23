@@ -46,10 +46,11 @@ if (!(isset($_SESSION["username"])) || !isset($_SESSION["selected_seats"])) {
 
             // If payment is successful, execute the insert query
             foreach ($selectedSeats as $seat) {
-                // Execute insert query for each selected seat
-                $insert_query = "INSERT INTO bookings (username, movieid, seatid) VALUES ('$uname', '$movieid', '$seat')";
+                // Execute insert query for each selected seat with the current booking date
+                $insert_query = "INSERT INTO bookings (username, movieid, seatid, bookingdate) VALUES ('$uname', '$movieid', '$seat', NOW())";
                 mysqli_query($conn, $insert_query);
             }
+
             header("Location: ticket.php");
         }
     }
