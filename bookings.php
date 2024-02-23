@@ -3,6 +3,20 @@ include("headder.php");
 if ((isset($_SESSION["username"]))) {
     $uname = $_SESSION["username"];
 }
+
+// Process form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
+    if (!empty($_POST["seats"])) {
+        $selectedSeats = $_POST["seats"];
+        // Store selected seats in session variable
+        $_SESSION["selected_seats"] = $selectedSeats;
+        header("Location: confirmation-payment.php");
+        exit();
+    } else {
+        // No seats selected, display an error message or take appropriate action
+        echo "Please select at least one seat.";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +26,6 @@ if ((isset($_SESSION["username"]))) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seat Booking</title>
     <link rel="stylesheet" href="style/bookingsMain.css">
-    <!-- <script src="scripts/seatbooking.js" defer></script> -->
 </head>
 
 <body>
@@ -32,7 +45,7 @@ if ((isset($_SESSION["username"]))) {
 
             <!-- Seat grid -->
             <div class="Seats">
-                <form id="seatForm" action="confirmation-payment.php" method="post"> <!-- Changed to POST method for security -->
+                <form id="seatForm" action="bookings.php" method="post"> <!-- Changed to POST method for security -->
 
                     <div class="seat-grid">
                         <?php
@@ -64,8 +77,8 @@ if ((isset($_SESSION["username"]))) {
 
                     <!-- Submit (Confirm) Button -->
                     <input type="submit" name="submit" value="Confirm">
-                    <!-- When this si submitted ....which all seats are selected will be entered into bookings
-                        database as Insert into bookings(username,seatid,movieid) -->
+                    <!-- When this is submitted ....which all seats are selected will be entered into bookings
+                    database as Insert into bookings(username,seatid,movieid) -->
                 </form>
             </div>
 

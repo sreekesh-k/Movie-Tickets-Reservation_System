@@ -1,7 +1,6 @@
 <?php
 session_start();
 include("db_connection.php");
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -490,7 +489,7 @@ include("db_connection.php");
                             if (isset($_POST['logout'])) {
                                 $_SESSION = array();
                                 session_destroy();
-                                header("Location: {$_SERVER['PHP_SELF']}");
+                                header("Location: index.php");
                                 exit();
                             }
                             ?>
