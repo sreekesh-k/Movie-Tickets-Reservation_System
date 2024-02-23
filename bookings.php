@@ -102,8 +102,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
                         }
                         ?>
                     </div>
+                    <br><br><br>
+                    <h4>Screen is here</h4>
+                    <svg width="375" height="37.5" viewBox="0 0 375 37.5" xmlns="http://www.w3.org/2000/svg">
+                        <!-- TV body -->
+                        <rect x="37.5" y="6.25" width="300" height="25" fill="#333" stroke="black" stroke-width="2" />
 
-
+                        <!-- Screen -->
+                        <polygon points="52.5,6.25 322.5,6.25 300,11.25 75,11.25" fill="#ADD8E6" stroke="black" stroke-width="2" />
+                    </svg>
+                    
             </div>
             <!-- Submit (Confirm) Button -->
             <input type="submit" name="submit" value="Confirm">
