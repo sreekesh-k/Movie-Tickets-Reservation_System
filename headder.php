@@ -10,6 +10,10 @@ include("db_connection.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <title>Document</title> -->
     <link rel="stylesheet" href="style/headerrstyle.css">
+    <script src="scripts/toggleloginbox.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scripts/login-signup.js"></script>
+    <script src="scripts/login-signupValidation.js"></script>
 </head>
 
 <body>
@@ -134,94 +138,6 @@ include("db_connection.php");
             </div>
         </div>
     </header>
-    <script>
-        function toggleLoginBox() {
-            const loginBoxContainer = document.getElementById('loginBoxContainer');
-            loginBoxContainer.classList.toggle('show');
-            // Toggle the overflow property of the body
-            document.body.style.overflow = loginBoxContainer.classList.contains('show') ? 'hidden' : 'auto';
-        }
-    </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        jQuery(document).ready(function($) {
-            tab = $('.tabs h3 a');
-
-            tab.on('click', function(event) {
-                event.preventDefault();
-                tab.removeClass('active');
-                $(this).addClass('active');
-
-                tab_content = $(this).attr('href');
-                $('div[id$="tab-content"]').removeClass('active');
-                $(tab_content).addClass('active');
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('.login-form').submit(function(e) {
-                e.preventDefault();
-                var formData = $(this).serialize();
-                $.ajax({
-                    type: 'POST',
-                    url: 'validateuser.php',
-                    data: formData,
-                    dataType: 'json',
-                    success: function(response) {
-                        if (response.success) {
-                            // Login successful, reload the page
-                            window.location.reload();
-                        } else {
-                            // Login failed, display error message and add shake animation to login box
-                            $('#loginError').text('Username or password is invalid.').show();
-                            $('.form-wrap').addClass('shake');
-                            setTimeout(function() {
-                                $('.form-wrap').removeClass('shake');
-                            }, 1000); // Adjust the delay as needed
-                            setTimeout(function() {
-                                $('#loginError').hide();
-                            }, 3000); // Hide error message after 3 seconds
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        // Handle AJAX errors
-                        console.error(xhr.responseText);
-                    }
-                });
-            });
-            $('.signup-form').submit(function(e) {
-                e.preventDefault();
-                var formData = $(this).serialize();
-                $.ajax({
-                    type: 'POST',
-                    url: 'signupvalidation.php',
-                    data: formData,
-                    dataType: 'json',
-                    success: function(response) {
-                        if (response.success) {
-                            $('#signupError').hide();
-                            $('#signupSuccess').text('Signup successfull.Now you can login').show();
-                            window.location.reload();
-                        } else {
-                            $('#signupError').text('Username is already registered.').show();
-                            $('#signupSuccess').hide();
-                            $('.form-wrap').addClass('shake');
-                            setTimeout(function() {
-                                $('.form-wrap').removeClass('shake');
-                            }, 1000); // Adjust the delay as needed
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        // Handle AJAX errors
-                        console.error(xhr.responseText);
-                    }
-                });
-            });
-        });
-    </script>
-
-
 </body>
 
 </html>
