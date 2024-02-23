@@ -1,5 +1,5 @@
 <?php
-include("headder.php");
+include("headerforbookings.php");
 if ((isset($_SESSION["username"]))) {
     $uname = $_SESSION["username"];
 }
@@ -19,19 +19,11 @@ if ((isset($_SESSION["movieid"]))) {
 <body>
     <div class='main'>
         <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
-            if (!empty($_POST["seats"])) {
-                // Loop through each selected seat and insert into the bookings table
-                foreach ($_POST["seats"] as $seatid) {
-                    $insert_query = "INSERT INTO bookings (username, movieid, seatid) VALUES ('$uname', '$movieid', '$seatid')";
-                    mysqli_query($conn, $insert_query);
-                }
-                // header("Location: bookings.php");
-                // exit();
-            } else {
-                // No seats selected, display an error message or take appropriate action
-                echo "Please select at least one seat.";
-            }
+        $selectedSeats = isset($_SESSION["selected_seats"]) ? $_SESSION["selected_seats"] : array();
+        // Display selected seats to the user for confirmation
+        echo"SELECTED SEATS: ";
+        foreach ($selectedSeats as $seat) {
+            echo " $seat ";
         }
         ?>
     </div>
