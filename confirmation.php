@@ -1,7 +1,7 @@
 <?php
 include("db_connection.php");
 session_start();
-if (!(isset($_SESSION["username"]))||!isset($_SESSION["selected_seats"])) {
+if (!(isset($_SESSION["username"])) || !isset($_SESSION["selected_seats"])) {
     header("Location: index.php");
     exit();
 }
@@ -39,7 +39,18 @@ if (!(isset($_SESSION["username"]))||!isset($_SESSION["selected_seats"])) {
         }
         if (isset($_POST["confirm"])) {
             sleep(2);
-            header("Location: index.php");
+            $selectedSeats = isset($_SESSION["selected_seats"]) ? $_SESSION["selected_seats"] : array();
+            $uname = $_SESSION["username"];
+            $movieid = $_SESSION["movieid"];
+            // Proceed with the payment process
+
+            // If payment is successful, execute the insert query
+            foreach ($selectedSeats as $seat) {
+                // Execute insert query for each selected seat
+                $insert_query = "INSERT INTO bookings (username, movieid, seatid) VALUES ('$uname', '$movieid', '$seat')";
+                mysqli_query($conn, $insert_query);
+            }
+            header("Location: ticket.php");
         }
     }
     ?>

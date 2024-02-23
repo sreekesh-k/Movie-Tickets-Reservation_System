@@ -48,6 +48,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
                 $row = mysqli_fetch_assoc($result);
                 $moviename = $row["title"];
             }
+            else{
+                header("Location: index.php");
+            }
             ?>
             <h2>Select your seat for <?php echo $moviename; ?></h2>
 
