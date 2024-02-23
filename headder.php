@@ -90,12 +90,22 @@ include("db_connection.php");
                                 header("Location: index.php");
                                 exit();
                             }
+
+                            if (isset($_SESSION["username"])) {
+                                echo " 
+                                <a href='userspage.php' style='text-decoration:none;'>
+                                <button type='button' class='menu-btn'>
+                                    O
+                                </button>
+                                </a>";
+                            } else {
+                                echo "<button type='button' class='menu-btn'>
+                                <span class='line'></span>
+                                <span class='line'></span>
+                                <span class='line'></span>
+                                </button>";
+                            }
                             ?>
-                            <button type="button" class="menu-btn">
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="line"></span>
-                            </button>
                         </div>
                     </div>
                 </div>
