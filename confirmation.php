@@ -1,3 +1,11 @@
+<?php
+include("db_connection.php");
+session_start();
+if ((isset($_SESSION["username"]))) {
+    $uname = $_SESSION["username"];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,9 +20,25 @@
     <div class="container">
         <div id="paymentAnimation"></div>
         <h2>Confirm Payment</h2>
-        <button id="declineBtn">Decline</button>
-        <button id="confirmBtn">Confirm</button>
+        <form action="" method="post">
+            <input type='button' id="declineBtn" name='decline' value='Decline'>
+            <input type='button' id="confirmBtn" name='confirm' value='Confirm'>
+        </form>
     </div>
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST["decline"])) {
+            sleep(1);
+            unset($_SESSION["seats"]);
+            unset($_SESSION["movieid"]);
+            header("Location: index.php");
+        }
+        if (isset($_POST["confirm"])) {
+            sleep(2);
+            header("Location: index.php");
+        }
+    }
+    ?>
     <script defer>
         document.getElementById("confirmBtn").addEventListener("click", function() {
             document.getElementById("paymentAnimation").style.display = "block";
