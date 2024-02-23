@@ -1,9 +1,11 @@
 <?php
 include("db_connection.php");
 session_start();
-if ((isset($_SESSION["username"]))) {
-    $uname = $_SESSION["username"];
+if (!(isset($_SESSION["username"]))||!isset($_SESSION["selected_seats"])) {
+    header("Location: index.php");
+    exit();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -20,17 +22,19 @@ if ((isset($_SESSION["username"]))) {
     <div class="container">
         <div id="paymentAnimation"></div>
         <h2>Confirm Payment</h2>
-        <form action="" method="post">
-            <input type='button' id="declineBtn" name='decline' value='Decline'>
-            <input type='button' id="confirmBtn" name='confirm' value='Confirm'>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <input type='submit' id="declineBtn" name='decline' value='decline'>
+            <input type='submit' id="confirmBtn" name='confirm' value='confirm'>
         </form>
+
     </div>
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST["decline"])) {
             sleep(1);
-            unset($_SESSION["seats"]);
+            unset($_SESSION["selected_seats"]);
             unset($_SESSION["movieid"]);
+            unset($_SESSION["price"]);
             header("Location: index.php");
         }
         if (isset($_POST["confirm"])) {
@@ -44,14 +48,8 @@ if ((isset($_SESSION["username"]))) {
             document.getElementById("paymentAnimation").style.display = "block";
             setTimeout(function() {
                 document.getElementById("paymentAnimation").style.display = "none";
-                alert("Payment Successful!");
-
-            }, 1000);
+            }, 3000);
             // Change 3000 to the duration of your animation
-        });
-
-        document.getElementById("declineBtn").addEventListener("click", function() {
-            alert("Payment Declined.");
         });
     </script>
 </body>

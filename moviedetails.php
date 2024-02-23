@@ -23,7 +23,8 @@ include("headder.php");
             <?php
             if (isset($_GET["movieid"])) {
                 $movieid = $_GET["movieid"];
-                $_SESSION["movieid"] = $movieid;
+                if (isset($_SESSION["username"]))
+                    $_SESSION["movieid"] = $movieid;
                 $sql = "SELECT * FROM movies WHERE movieid= $movieid";
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);

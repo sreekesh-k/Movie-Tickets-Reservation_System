@@ -1,5 +1,10 @@
 <?php
 include("headerforbookings.php");
+if (!(isset($_SESSION["username"])) || !isset($_SESSION["selected_seats"])) {
+    header("Location: index.php");
+    exit();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
