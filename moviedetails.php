@@ -60,21 +60,12 @@ include("headder.php");
                 <div class='movie-desc'>
                     <div class='transparent-box'>
                         <h1>" . strtoupper($row["title"]) . "</h1>  
+                        <h3>".date("Y", $date)." - {$row["certificate"]} - {$hours}h {$minutes}m</h3>
                     </div>
                     <div class='content-box'>
                         <div class = 'description'>
                             <p>{$row["description"]}</p>
-                            <div class= catagory-box>
-                                <div class='cata-box'>
-                                {$row["certificate"]} 
-                                </div>
-                                <div class='cata-box'>
-                                {$hours}h {$minutes}m
-                                </div>
-                                <div class='cata-box'>" .
-                    date("d-m-y", $date) .
-                    "</div>
-                            </div>";
+                        ";
                 $sql1 = "SELECT * FROM movies m JOIN moviesstars ms ON m.movieid= ms.moviesid Join stars s ON ms.starsid=s.starsid WHERE m.movieid='{$movieid}'";
                 $result1 = mysqli_query($conn, "$sql1");
 
@@ -248,6 +239,17 @@ include("headder.php");
                     }
                 }
                 ?>
+                <!-- <div class=catagory-box>
+                    <div class='cata-box'>
+                        {$row["certificate"]}
+                    </div>
+                    <div class='cata-box'>
+                        {$hours}h {$minutes}m
+                    </div>
+                    <div class='cata-box'>" .
+                        date("d-m-y", $date) .
+                        "</div>
+                </div> -->
             </div>
         </div>
     </div>
