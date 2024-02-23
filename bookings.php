@@ -20,8 +20,8 @@ if ((isset($_SESSION["username"]))) {
     <div class="main">
         <center>
             <?php
-            if (isset($_GET["movieid"])) {
-                $movieid = $_GET["movieid"];
+            if (isset($_SESSION["movieid"])) {
+                $movieid = $_SESSION["movieid"];
                 $sql = "SELECT * FROM movies WHERE movieid= $movieid";
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);
@@ -32,7 +32,7 @@ if ((isset($_SESSION["username"]))) {
 
             <!-- Seat grid -->
             <div class="Seats">
-                <form id="seatForm" action="" method="post"> <!-- Changed to POST method for security -->
+                <form id="seatForm" action="confirmation-payment.php" method="post"> <!-- Changed to POST method for security -->
 
                     <div class="seat-grid">
                         <?php
@@ -68,22 +68,7 @@ if ((isset($_SESSION["username"]))) {
                         database as Insert into bookings(username,seatid,movieid) -->
                 </form>
             </div>
-            <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
-                if (!empty($_POST["seats"])) {
-                    // Loop through each selected seat and insert into the bookings table
-                    foreach ($_POST["seats"] as $seatid) {
-                        $insert_query = "INSERT INTO bookings (username, movieid, seatid) VALUES ('$uname', '$movieid', '$seatid')";
-                        mysqli_query($conn, $insert_query);
-                    }
-                    // header("Location: bookings.php");
-                    // exit();
-                } else {
-                    // No seats selected, display an error message or take appropriate action
-                    echo "Please select at least one seat.";
-                }
-            }
-            ?>
+
         </center>
     </div>
     <!-- Script to display selected seats -->

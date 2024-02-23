@@ -23,6 +23,7 @@ include("headder.php");
             <?php
             if (isset($_GET["movieid"])) {
                 $movieid = $_GET["movieid"];
+                $_SESSION["movieid"] = $movieid;
                 $sql = "SELECT * FROM movies WHERE movieid= $movieid";
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);
@@ -60,7 +61,7 @@ include("headder.php");
                 <div class='movie-desc'>
                     <div class='transparent-box'>
                         <h1>" . strtoupper($row["title"]) . "</h1>  
-                        <h3>".date("Y", $date)." - {$row["certificate"]} - {$hours}h {$minutes}m</h3>
+                        <h3>" . date("Y", $date) . " - {$row["certificate"]} - {$hours}h {$minutes}m</h3>
                     </div>
                     <div class='content-box'>
                         <div class = 'description'>
@@ -86,7 +87,7 @@ include("headder.php");
                 if ($row["r_date"] > '2019-01-01') {
                     if (isset($_SESSION['username'])) {
                         echo
-                        "<hr><br><center><a href='bookings.php?movieid={$movieid}'>
+                        "<hr><br><center><a href='bookings.php'>
                             <button type='button' name='watch' class='bookorwatch'>
                             <big>Book Tickets</big>
                             </button>
