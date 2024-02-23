@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
             ?>
             <h2>Select your seat for <?php echo $moviename; ?></h2>
 
-            <!-- Seat grid -->
+            <!-- Seat grid --><!-- Seat grid (i want 120 here here) -->
             <div class="Seats">
                 <form id="seatForm" action="bookings.php" method="post"> <!-- Changed to POST method for security -->
 
@@ -64,6 +64,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
                         // Query to fetch all seats
                         $sql = "SELECT * FROM seats";
                         $result = mysqli_query($conn, $sql);
+
+                        // Counter variable to keep track of the number of seats displayed
+                        $seatCounter = 0;
+
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            // Check if the current seat is booked
+                            $disabled = in_array($row["seatid"], $bookedSeats) ? "disabled" : ""; // Disable checkbox if seat is booked
+
+                            // Output the checkbox and label
+                            echo "<input type='checkbox' id='seat{$row["seatno"]}' class='seat-checkbox' name='seats[]' value='{$row["seatid"]}' $disabled>";
+                            echo "<label for='seat{$row["seatno"]}' class='seat-label'>{$row["seatno"]}</label>";
+
+                            // Increment the seat counter
+                            $seatCounter++;
+
+                            // Check if the seat counter reaches 120, if so, break the loop
+                            if ($seatCounter >= 120) {
+                                break;
+                            }
+                        }
+                        ?>
+                    </div>
+                    <br>
+
+                    <!-- Seat grid2 -->
+                    <div class="seat-grid2">
+                        <?php
+                        // Continue fetching seats from the result set
                         while ($row = mysqli_fetch_assoc($result)) {
                             // Check if the current seat is booked
                             $disabled = in_array($row["seatid"], $bookedSeats) ? "disabled" : ""; // Disable checkbox if seat is booked
@@ -73,17 +101,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
                             echo "<label for='seat{$row["seatno"]}' class='seat-label'>{$row["seatno"]}</label>";
                         }
                         ?>
-
                     </div>
 
-                    <!-- Submit (Confirm) Button -->
-                    <input type="submit" name="submit" value="Confirm">
-                    <!-- When this is submitted ....which all seats are selected will be entered into bookings
-                    database as Insert into bookings(username,seatid,movieid) -->
-                </form>
-            </div>
 
-        </center>
+            </div>
+            <!-- Submit (Confirm) Button -->
+            <input type="submit" name="submit" value="Confirm">
+            <!-- When this is submitted ....which all seats are selected will be entered into bookings
+                    database as Insert into bookings(username,seatid,movieid) -->
+            </form>
+    </div>
+
+    </center>
     </div>
     <!-- Script to display selected seats -->
 </body>

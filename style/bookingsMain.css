@@ -1,11 +1,26 @@
 .Seats {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.Seats form {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
+
 /* Style for the grid */
 .seat-grid {
+    display: grid;
+    grid-template-columns: repeat(20, 50px);
+    /* Adjust according to your preference */
+    gap: 5px;
+    /* Adjust according to your preference */
+}
+.seat-grid2 {
     display: grid;
     grid-template-columns: repeat(14, 50px);
     /* Adjust according to your preference */

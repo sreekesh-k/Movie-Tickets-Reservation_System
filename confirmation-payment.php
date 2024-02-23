@@ -1,11 +1,5 @@
 <?php
 include("headerforbookings.php");
-if ((isset($_SESSION["username"]))) {
-    $uname = $_SESSION["username"];
-}
-if ((isset($_SESSION["movieid"]))) {
-    $movieid = $_SESSION["movieid"];
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
