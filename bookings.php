@@ -10,6 +10,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         $selectedSeats = $_POST["seats"];
         // Store selected seats in session variable
         $_SESSION["selected_seats"] = $selectedSeats;
+        if (isset($_POST["submit"])) {
+            $_SESSION["price"] = $_POST["submit"];
+        }
         header("Location: confirmation-payment.php");
         exit();
     } else {
@@ -26,7 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seat Booking</title>
     <link rel="stylesheet" href="style/bookingsMain.css">
-
 </head>
 
 <body>
@@ -73,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
                             $disabled = in_array($row["seatid"], $bookedSeats) ? "disabled" : ""; // Disable checkbox if seat is booked
 
                             // Output the checkbox and label
-                            echo "<input type='checkbox' id='seat{$row["seatno"]}' class='seat-checkbox' name='seats[]' value='{$row["seatid"]}' $disabled>";
+                            echo "<input type='checkbox' id='seat{$row["seatno"]}' class='seat-checkbox' name='seats[]' value='{$row["seatid"]}' data-price='{$row["price"]}' onclick='calculateTotal(); showSubmitButton();' $disabled>";
                             echo "<label for='seat{$row["seatno"]}' class='seat-label'>{$row["seatno"]}</label>";
 
                             // Increment the seat counter
@@ -97,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
                             $disabled = in_array($row["seatid"], $bookedSeats) ? "disabled" : ""; // Disable checkbox if seat is booked
 
                             // Output the checkbox and label
-                            echo "<input type='checkbox' id='seat{$row["seatno"]}' class='seat-checkbox' name='seats[]' value='{$row["seatid"]}' $disabled>";
+                            echo "<input type='checkbox' id='seat{$row["seatno"]}' class='seat-checkbox' name='seats[]' value='{$row["seatid"]}' data-price='{$row["price"]}' onclick='calculateTotal(); showSubmitButton();' $disabled>";
                             echo "<label for='seat{$row["seatno"]}' class='seat-label'>{$row["seatno"]}</label>";
                         }
                         ?>
@@ -111,19 +113,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
                         <!-- Screen -->
                         <polygon points="52.5,6.25 322.5,6.25 300,11.25 75,11.25" fill="#ADD8E6" stroke="black" stroke-width="2" />
                     </svg>
-                    
+
             </div>
             <!-- Submit (Confirm) Button -->
-            <input type="submit" name="submit" value="Confirm">
-            <!-- When this is submitted ....which all seats are selected will be entered into bookings
+            <div class="sticky-bottom-button">
+                <input type="submit" id="submitBtn" name="submit" value="" style="display: none;">
+                <!-- When this is submitted ....which all seats are selected will be entered into bookings
                     database as Insert into bookings(username,seatid,movieid) -->
+            </div>
             </form>
+
     </div>
 
     </center>
     </div>
     <!-- Script to display selected seats -->
 </body>
+<script>
+    function calculateTotal() {
+        var total = 0;
+        var checkboxes = document.querySelectorAll('.seat-checkbox:checked');
+        checkboxes.forEach(function(checkbox) {
+            total += parseFloat(checkbox.getAttribute('data-price'));
+        });
+        document.getElementById('submitBtn').value = "Proceed Rs:" + total.toFixed(2);
+    }
+
+    function showSubmitButton() {
+        var submitButton = document.getElementById('submitBtn');
+        submitButton.style.display = 'block';
+    }
+</script>
 
 </html>
 <?php

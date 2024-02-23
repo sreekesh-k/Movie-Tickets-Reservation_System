@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
 }
+
 .Seats form {
     display: flex;
     flex-direction: column;
@@ -20,6 +21,7 @@
     gap: 5px;
     /* Adjust according to your preference */
 }
+
 .seat-grid2 {
     display: grid;
     grid-template-columns: repeat(14, 50px);
@@ -76,4 +78,30 @@
 .seat-checkbox:disabled+.seat-label:hover {
     background-color: grey;
     /* Keep the same color even on hover */
+}
+
+/* Sticky bottom button style */
+.sticky-bottom-button {
+    position: fixed;
+    bottom: 3px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color:transparent;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sticky-bottom-button input[type="submit"] {
+    background-color: green;
+    color: white;
+    width: 80%;
+    height: 100%;
+    box-shadow: 0px 0px 50px black;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
 }
