@@ -12,7 +12,7 @@ if (isset($_POST["username"])) {
         $response = array("success" => false);
     } else {
         $insert_query = "INSERT INTO users(username,password,emailid) VALUES ('{$username}','{$password}','{$email}')";
-        if (mysqli_query($conn, $query)) {
+        if (mysqli_query($conn, $insert_query)) {
             $response = array("success"=> true);
         }else{
             $response = array("success"=> false);

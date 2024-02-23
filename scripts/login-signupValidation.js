@@ -41,7 +41,6 @@ $(document).ready(function () {
                 if (response.success) {
                     $('#signupError').hide();
                     $('#signupSuccess').text('Signup successfull.Now you can login').show();
-                    window.location.reload();
                 } else {
                     $('#signupError').text('Username is already registered.').show();
                     $('#signupSuccess').hide();
