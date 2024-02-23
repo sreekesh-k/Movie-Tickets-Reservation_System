@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 3px;
+}
+
+.content {
+    max-height: 90%;
+    width: 100%;
+    flex-grow: 3;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.imgbox {
+    flex-grow: 50%;
+    max-width: 50%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    background-color: black;
+}
+
+.imgbox img {
+    height: 100%;
+    width: 100%;
+}
+
+.detailsbox {
+    flex-grow: 50%;
+    max-width: 50%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 3px;
+
+}
+
+.detailsbox hr {
+    display: block;
+    background-color: black;
+    width: 100%;
+}
+
+.inputbox {
+    flex-grow: 1;
+    max-height: 10%;
+    width: 100%;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}

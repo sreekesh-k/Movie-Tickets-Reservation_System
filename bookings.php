@@ -136,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         checkboxes.forEach(function(checkbox) {
             total += parseFloat(checkbox.getAttribute('data-price'));
         });
-        document.getElementById('submitBtn').value = "Proceed Rs:" + total.toFixed(2);
+        document.getElementById('submitBtn').value = total.toFixed(2);
     }
 
     function showSubmitButton() {

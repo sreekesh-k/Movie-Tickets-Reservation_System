@@ -1,39 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Checkbox Example</title>
-    <script>
-        function calculateTotal() {
-            var total = 0;
-            var checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
-            checkboxes.forEach(function(checkbox) {
-                total += parseFloat(checkbox.value);
-            });
-            document.getElementById('submitBtn').value = "Total Price: $" + total.toFixed(2);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paytm Inspired Checkout Page</title>
+    <style>
+        /* Basic styling for the checkout page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
         }
 
-        function showSubmitButton() {
-            var submitButton = document.getElementById('submitBtn');
-            submitButton.style.display = 'block';
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-    </script>
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<body>
-    <form action="process.php" method="post">
-        <?php
-            // Assume you have fetched the data from the database and stored it in $boxes variable
-            $boxes = [
-                ['id' => 1, 'number' => 'Box 1', 'price' => 10],
-                ['id' => 2, 'number' => 'Box 2', 'price' => 15],
-                ['id' => 3, 'number' => 'Box 3', 'price' => 20]
-            ];
 
-            foreach ($boxes as $box) {
-                echo '<input type="checkbox" name="selected_boxes[]" value="' . $box['price'] . '" onclick="calculateTotal(); showSubmitButton();">' . $box['number'] . ' - $' . $box['price'] . '<br>';
-            }
-        ?>
-        <br>
-        <input type="submit" id="submitBtn" style="display:none;" value="Proceed Rs: $0.00">
-    </form>
+<body>
+    <div class="container">
+        <h2>Checkout Page</h2>
+        <form action="your_payment_processing_script.php" method="post">
+            
+            <input type="submit" value="Pay">
+        </form>
+    </div>
 </body>
+
 </html>
