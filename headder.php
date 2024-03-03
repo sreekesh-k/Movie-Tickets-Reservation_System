@@ -91,20 +91,12 @@ include("db_connection.php");
                                 exit();
                             }
 
-                            if (isset($_SESSION["username"])) {
-                                echo " 
-                                <a href='userspage.php' style='text-decoration:none;'>
-                                <button type='button' class='menu-btn'>
-                                    O
-                                </button>
-                                </a>";
-                            } else {
-                                echo "<button type='button' class='menu-btn'>
+                            echo "<button type='button' class='menu-btn'>
                                 <span class='line'></span>
                                 <span class='line'></span>
                                 <span class='line'></span>
                                 </button>";
-                            }
+
                             ?>
                         </div>
                     </div>
@@ -119,9 +111,17 @@ include("db_connection.php");
                     <div class="left-box">
                         <div class="main1-box">
                             <div class="subbox">
-                                <button type="button" class="sub-btn">Offers</button>
-                                <button type="button" class="sub-btn">GiftCard</button>
-                                <button type="button" class="sub-btn">News</button>
+                                <a href="movielist.php?r_date=2019-01-01" class="sub-btn">BookNow</a>
+                                <?php
+                                if (isset($_SESSION["username"])) {
+                                    echo " 
+                                    <a href='userspage.php' class='sub-btn'>MyTickets</a>";
+                                } else {
+                                    echo " <a href='#' class='sub-btn' onclick='toggleLoginBox()'>MyTickets</a>";
+                                }
+                                ?>
+
+                                <a href="html/footer.html" class="sub-btn">News</a>
                             </div>
                         </div>
 
@@ -136,8 +136,8 @@ include("db_connection.php");
                             <div class="subbox">
                                 <div class="sub-btn"></div>
                                 <div class="sub-btn"></div>
-                                <button type="button" class="sub-btn">Offers</button>
-                                <button type="button" class="sub-btn">GiftCard</button>
+                                <a href="html/footer.html" class="sub-btn">Offers</a>
+                                <a href="html/footer.html" class="sub-btn">GiftCard</a>
                                 <div class="sub-btn"></div>
                             </div>
                         </div>

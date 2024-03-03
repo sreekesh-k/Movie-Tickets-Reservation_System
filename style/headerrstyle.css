@@ -324,7 +324,7 @@ input {
     background-color: rgba(69, 66, 66, 0.058);
 }
 
-.menubar-box button:hover {
+.menubar-box a:hover {
     border-bottom: solid 3px rgba(56, 233, 68, 0.238);
     font-size: 1em;
 }
