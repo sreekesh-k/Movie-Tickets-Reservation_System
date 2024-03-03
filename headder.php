@@ -121,7 +121,7 @@ include("db_connection.php");
                                 }
                                 ?>
 
-                                <a href="html/footer.html" class="sub-btn">News</a>
+                                <a href="html/news.html" class="sub-btn">News</a>
                             </div>
                         </div>
 
@@ -136,8 +136,8 @@ include("db_connection.php");
                             <div class="subbox">
                                 <div class="sub-btn"></div>
                                 <div class="sub-btn"></div>
-                                <a href="html/footer.html" class="sub-btn">Offers</a>
-                                <a href="html/footer.html" class="sub-btn">GiftCard</a>
+                                <a href="html/notyet.html" class="sub-btn">Offers</a>
+                                <a href="html/notYet.html" class="sub-btn">GiftCard</a>
                                 <div class="sub-btn"></div>
                             </div>
                         </div>
