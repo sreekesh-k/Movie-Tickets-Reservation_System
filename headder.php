@@ -103,6 +103,9 @@ include("db_connection.php");
                     </div>
                 </div>
                 <div id="slide-menu" class="slide-menu">
+                    <button class="close-btn" onclick="toggleSlideMenu()">
+                        <span>&times;</span>
+                    </button>
                     <!-- Menu items go here -->
                     <ul>
                         <li><a href="#">Menu Item 1</a></li>
