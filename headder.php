@@ -22,7 +22,7 @@ include("db_connection.php");
     <header>
         <div class="login-box-container" id="loginBoxContainer">
             <div class="form-wrap">
-                <div class="close-btn" style="display:flex; align-items:flex-end;justify-content:flex-end;">
+                <div class="cls-btn" style="display:flex; align-items:flex-end;justify-content:flex-end;">
                     <button onclick="toggleLoginBox()" style="background-color:rgb(51, 199, 105); height:auto;width:50px;border:none;color:white;">X</button>
                 </div>
                 <div class="tabs">
@@ -117,6 +117,23 @@ include("db_connection.php");
                         <a href="html/news.html">
                             <li>News</li>
                         </a>
+                        <?php
+                        if (isset($_SESSION["username"])) {
+                            echo "     
+                            <a href='index.php'>
+                            <li>View Tickets</li>
+                            </a>
+                            <a href='logout.php'>
+                            <li>Logout</li>
+                            </a>";
+                        }
+                        else{
+                            echo"
+                            <a href='#' onclick='toggleSlideMenu();toggleLoginBox()' >
+                            <li>Signin</li>
+                            </a>";
+                        }
+                        ?>
 
                     </ul>
                 </div>
