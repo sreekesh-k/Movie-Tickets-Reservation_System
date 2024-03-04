@@ -402,20 +402,27 @@
   .slide-menu {
       position: fixed;
       top: 0;
-      z-index: 100;
       right: -300px;
+      /* Start the menu off-screen */
+      z-index: 100;
       width: 300px;
       height: 100%;
       background-color: #f0f0f0;
-      transition: right 0.3s ease;
+      transition: right 0.3s ease, box-shadow 0.3s ease;
+      /* Add box-shadow to the transition */
+      box-shadow: none;
+      /* Initially hide the box shadow */
   }
 
   .slide-menu.show {
       right: 0;
       /* Slide the menu into view */
+      box-shadow: 0px 0px 50px black;
+      /* Show the box shadow when the menu is visible */
   }
 
   .slide-menu ul {
+    margin-top: 50px;
       list-style-type: none;
       padding: 0;
   }
@@ -424,13 +431,13 @@
       padding: 10px 20px;
   }
 
-  .slide-menu ul li a {
+  .slide-menu ul a {
       text-decoration: none;
       color: #333;
       font-size: 16px;
   }
 
-  .slide-menu ul li a:hover {
+  .slide-menu ul li:hover {
       background-color: #ddd;
   }
 

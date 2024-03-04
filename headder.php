@@ -108,9 +108,16 @@ include("db_connection.php");
                     </button>
                     <!-- Menu items go here -->
                     <ul>
-                        <li><a href="#">Menu Item 1</a></li>
-                        <li><a href="#">Menu Item 2</a></li>
-                        <li><a href="#">Menu Item 3</a></li>
+                        <a href="index.php">
+                            <li>Home</li>
+                        </a>
+                        <a href="html/notYet.html">
+                            <li>About</li>
+                        </a>
+                        <a href="html/news.html">
+                            <li>News</li>
+                        </a>
+
                     </ul>
                 </div>
 
