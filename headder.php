@@ -14,6 +14,7 @@ include("db_connection.php");
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="scripts/login-signup.js"></script>
     <script src="scripts/login-signupValidation.js"></script>
+    <script src="scripts/menu.js"></script>
 </head>
 
 <body>
@@ -91,7 +92,7 @@ include("db_connection.php");
                                 exit();
                             }
 
-                            echo "<button type='button' class='menu-btn'>
+                            echo "<button type='button' class='menu-btn' onclick='toggleSlideMenu()'>
                                 <span class='line'></span>
                                 <span class='line'></span>
                                 <span class='line'></span>
@@ -100,6 +101,14 @@ include("db_connection.php");
                             ?>
                         </div>
                     </div>
+                </div>
+                <div id="slide-menu" class="slide-menu">
+                    <!-- Menu items go here -->
+                    <ul>
+                        <li><a href="#">Menu Item 1</a></li>
+                        <li><a href="#">Menu Item 2</a></li>
+                        <li><a href="#">Menu Item 3</a></li>
+                    </ul>
                 </div>
 
             </nav>
