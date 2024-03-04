@@ -15,10 +15,11 @@ include("db_connection.php");
     <script src="scripts/login-signup.js"></script>
     <script src="scripts/login-signupValidation.js"></script>
     <script src="scripts/menu.js"></script>
+    <script src="scripts/btnscroll.js"></script>
 </head>
 
 <body>
-
+    <button onclick="scrollToTop()" id="scrollToTopBtn" title="Go to top">&#8593;</button>
     <header>
         <div class="login-box-container" id="loginBoxContainer">
             <div class="form-wrap">
@@ -67,7 +68,7 @@ include("db_connection.php");
                     <div class="in-box">
                         <form action="movielist.php" method="get">
                             <div class="searchbox">
-                                <input type="text" name="searcbox" placeholder="search movies">
+                                <input type="text" name="searcbox" placeholder="search movies" required>
                             </div>
                             <div class="searchbutton">
                                 <button type="submit"> <img src="Images/search-icon.png" alt="Search"></button>
@@ -126,9 +127,8 @@ include("db_connection.php");
                             <a href='logout.php'>
                             <li>Logout</li>
                             </a>";
-                        }
-                        else{
-                            echo"
+                        } else {
+                            echo "
                             <a href='#' onclick='toggleSlideMenu();toggleLoginBox()' >
                             <li>Signin</li>
                             </a>";
