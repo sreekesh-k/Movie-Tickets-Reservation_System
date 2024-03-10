@@ -20,6 +20,7 @@
 			<th width="150">UserName</th>
 			<th width="180">Email</th>
 			<th width="150">Password</th>
+			<th width="150">Delete</th>
 		</tr>
 
 		<?php
@@ -41,6 +42,7 @@
 					<td> <?php echo $data['username']; ?> </td>
 					<td> <?php echo $data['emailid']; ?> </td>
 					<td> <?php echo $data['password']; ?> </td>
+					<td><a href="deleteuser.php?userid=<?php echo $data['userid']; ?>">Delete</a></td>
 				</tr>
 		<?php
 			}

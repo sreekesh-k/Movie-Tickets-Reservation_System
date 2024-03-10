@@ -33,6 +33,7 @@ include('../db_connection.php');
 			<th width="150">Seat Id</th>
 			<th width="150">UserName</th>
 			<th width="180">BookingDate</th>
+			<th width="150">Delete</th>
 		</tr>
 
 		<?php
@@ -51,6 +52,7 @@ include('../db_connection.php');
 					<td> <?php echo $data['seatid']; ?> </td>
 					<td> <?php echo $data['username']; ?> </td>
 					<td> <?php echo $data['bookingdate']; ?> </td>
+					<td><a href="deletebooking.php?bookinfid=<?php echo $data['bookingid']; ?>">Delete</a></td>
 				</tr>
 		<?php
 			}
