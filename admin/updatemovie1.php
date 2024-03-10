@@ -44,7 +44,7 @@ $data = mysqli_fetch_assoc($run);
 				<tr>
 					<td>Movie ID</td>
 					<td>
-						<input type="text" name="movieid" value="<?php echo $data['movieid']; ?>" disabled>
+						<input type="text" name="movieid" value="<?php echo $movieid; ?>" readonly>
 					</td>
 				</tr>
 				<tr>
