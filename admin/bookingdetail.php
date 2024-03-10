@@ -52,7 +52,7 @@ include('../db_connection.php');
 					<td> <?php echo $data['seatid']; ?> </td>
 					<td> <?php echo $data['username']; ?> </td>
 					<td> <?php echo $data['bookingdate']; ?> </td>
-					<td><a href="deletebooking.php?bookinfid=<?php echo $data['bookingid']; ?>">Delete</a></td>
+					<td><a href="deletebooking.php?bookingid=<?php echo $data['bookingid']; ?>">Delete</a></td>
 				</tr>
 		<?php
 			}
