@@ -199,7 +199,7 @@
       top: 0;
       left: 0;
       background-color: rgba(35, 36, 35, 0.679);
-      z-index: 1;
+      z-index: 100;
       align-items: center;
       justify-content: center;
       display: flex;

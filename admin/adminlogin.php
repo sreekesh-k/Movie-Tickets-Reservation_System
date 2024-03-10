@@ -20,7 +20,7 @@ if (isset($_SESSION['aid'])) {
 
 	<div class=" bg-dark pt-3 pb-3">
 		<a href="../index.php"><button type="button" class="btn btn-success ml-3" style="float:right;">HOME</button></a>
-		<a href="../login.php"><button type="button" class="btn btn-danger mr-3" style="float:left;">
+		<a href="../index.php"><button type="button" class="btn btn-danger mr-3" style="float:left;">
 				<< Back</button></a>
 		<h1 class="text-center text-light">PicturePerfect</h1>
 	</div>
@@ -33,11 +33,11 @@ if (isset($_SESSION['aid'])) {
 			<form action="adminlogin.php" method="post">
 				<tr>
 					<td>Username</td>
-					<td><input type="text" name="uname" value="admin" required></td>
+					<td><input type="text" name="uname" required></td>
 				</tr>
 				<tr>
 					<td>Password</td>
-					<td><input type="password" name="pass" value="admin" required></td>
+					<td><input type="password" name="pass" required></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center" height="80">
