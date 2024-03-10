@@ -26,7 +26,7 @@
 		<a href="updatemovie.php"><button class="btn btn-lg btn-primary">UPDATE MOVIES</button></a><br><br>
 		<a href="deletemovie.php"><button class="btn btn-lg btn-primary">DELETE MOVIES</button></a><br><br>
 		<a href="moviedb.php"><button class="btn btn-lg btn-primary">MOVIE DETAILS</button></a><br><br>
-		<a href="moviedetail.php"><button class="btn btn-lg btn-primary">BOOKING DETAIL</button></a><br><br>
+		<a href="bookingdetail.php"><button class="btn btn-lg btn-primary">BOOKING DETAIL</button></a><br><br>
 		<a href="userdb.php"><button class="btn btn-lg btn-primary">USER DETAIL</button></a>
 	</div>
 
