@@ -47,8 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);
                 $moviename = $row["title"];
-            }
-            else{
+            } else {
                 header("Location: index.php");
             }
             ?>

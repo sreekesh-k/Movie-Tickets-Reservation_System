@@ -134,7 +134,9 @@ include("db_connection.php");
                             </a>";
                         }
                         ?>
-
+                        <a href="admin/adminlogin.php">
+                            <li>Admin</li>
+                        </a>
                     </ul>
                 </div>
 
