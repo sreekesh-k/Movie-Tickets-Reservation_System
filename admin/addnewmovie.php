@@ -32,7 +32,7 @@
 		</div>
 
 		<table align="center" style="margin-top: 50px; margin-right: 400px;" cellpadding="3">
-			<form action="addnewitem.php" method="post" enctype="multipart/form-data">
+			<form action="" method="post" enctype="multipart/form-data">
 				<tr>
 					<td>Movie Name</td>
 					<td>
@@ -124,7 +124,7 @@ include('../db_connection.php');
 if (isset($_POST['submit'])) {
 	$title = $_POST['title'];
 	$r_date = $_POST['r_date'];
-	$image_url = $_POST['img_url']; // Assuming you'll save the image URL directly
+	$image_url = $_POST['image_url']; // Assuming you'll save the image URL directly
 	$runtime = $_POST['runtime'];
 	$imdb_rating = $_POST['imdb_rating'];
 	$description = $_POST['description'];
@@ -135,7 +135,7 @@ if (isset($_POST['submit'])) {
 	$genre = $_POST['genre'];
 
 	// Insert the data into the movie table
-	$query = "INSERT INTO movie (title, r_date, image_url, runtime, imdb_rating, description, certificate, metascore, votes, language, genre) 
+	$query = "INSERT INTO movies (title, r_date, image_url, runtime, imdb_rating, description, certificate, metascore, votes, language, genre) 
               VALUES ('$title', '$r_date', '$image_url', $runtime, $imdb_rating, '$description', '$certificate', $metascore, $votes, '$language', '$genre')";
 
 	$run = mysqli_query($conn, $query);
